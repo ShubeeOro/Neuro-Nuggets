@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Flask Login Example
+</h1>
+<h2 class="subtitle">
+  Easy authentication and authorization in Flask.
+  {% for q in questions %}
+  <tr>
+    <td>{{ q.question }}</td>
+    <td>{{ q.answers }}</td>
+    <td>{{ q.answer_id }}</td>
+  </tr>
+  {% endfor %}
+</h2>
+{% endblock %}

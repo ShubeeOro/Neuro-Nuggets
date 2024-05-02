@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    // User Answer Via Buttons Logic
+    var socket = io();
+
+    var question = document.getElementById('question');
+    var form = document.getElementById('form');
+    var buttons = document.getElementsByClassName('answer_btn')
+
+    var user_input = null
+
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var intervalId = setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = 0
+                socket.emit('timer', true);
+            }
+        }, 1000);
+    }
+
+
+
+    socket.on('counter', function(data) {
+
+    // socket.emit('my event', {data: 'I\'m connected!'});
+    });
+
+    socket.on('question', function(data) {
+        console.log(data)
+        question.innerHTML = ''
+        var item = document.createElement('p');
+        item.textContent = data;
+        question.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    buttons.item(0).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(1).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(2).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(3).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (user_input) {
+        socket.emit('my event', user_input);
+      }
+      user_input = null
+    });
+    // 
+    socket.on('connect', function(data) {
+        var display = document.getElementById('time');
+        startTimer(10, display)
+        // socket.emit('my event', {data: 'I\'m connected!'});
+    });
+
+    socket.on('redirect', function(destination) {
+        question.innerHTML = ''
+        buttons.item(0).disabled = true
+        buttons.item(1).disabled = true
+        buttons.item(2).disabled = true
+        buttons.item(3).disabled = true
+    });
+</script>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<div> <span id="time"> ---- </span> </div>
+
+<div id="question">
+
+</div>
+
+<form id="form">
+    <button class="answer_btn" id="btn1" type="submit" value="1">1</button>
+    <button class="answer_btn" id="btn2" type="submit" value="2">2</button>
+    <button class="answer_btn" id="btn3" type="submit" value="3">3</button>
+    <button class="answer_btn" id="btn4" type="submit" value="4">4</button>
+</form>
+{% endblock %}
