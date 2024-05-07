@@ -64,8 +64,6 @@ def handle_connect():
 def end_game(data):
     emit('redirect', "localhost:8888")
         
-    
-
 @socketio.on('my event')
 def test_connect_res(data):
     print("RES")
