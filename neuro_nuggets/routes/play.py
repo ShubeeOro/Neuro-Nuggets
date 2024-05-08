@@ -14,6 +14,14 @@ play = Blueprint('play', __name__)
 @play.route('/')
 @login_required
 def start_game():
-    return render_template('pages/play.html')
+    return render_template('pages/game_mode.html')
 
+@play.route('/endless')
+@login_required
+def endless_game():
+    return render_template('pages/endless.html')
 
+@play.route('/solo')
+@login_required
+def solo_game():
+    return render_template('pages/solo.html')

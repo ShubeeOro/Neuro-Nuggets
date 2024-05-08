@@ -17,7 +17,7 @@ class User(UserMixin, db.Model):
     email = mapped_column(String(200), nullable=False, unique=True)
     password = mapped_column(String(200), nullable=False)
     name = mapped_column(String(200), nullable=False)
-    highscore = mapped_column(Integer(), nullable=True)
+    highscore = mapped_column(Integer(), nullable=True,default=0)
 
 class Question(db.Model):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
@@ -25,9 +25,10 @@ class Question(db.Model):
     correct_answer = mapped_column(String(200), nullable=False)
     incorrect_answers = mapped_column(TEXT(400), nullable=False)
     category = mapped_column(String(100), nullable=False)
-    difficulty = mapped_column(String(100), nullable=True)
+    difficulty = mapped_column(String(100), nullable=False, default=0)
 
     # Required to initalize the question from the database
+    # When you load a question row from the database, 
     def init_answers(self) -> None:
         # Answer List
         answers = json.loads(self.incorrect_answers)
@@ -35,6 +36,17 @@ class Question(db.Model):
         shuffle(answers)
         self.answers = answers
         self.answer_id  = answers.index(self.correct_answer) + 1
+
+    def convert_question(self) -> dict:
+        if not self.answers:
+            self.init_answers()
+        
+        return {
+            "question": self.question,
+            "correct_answer": self.correct_answer,
+            "answers": self.answers,
+            "answer_id": self.answer_id
+        }
 
     def __getitem__(self, index):
         if isinstance(index, str):

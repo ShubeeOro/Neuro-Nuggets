@@ -10,32 +10,12 @@
     var form = document.getElementById('form');
     var buttons = document.getElementsByClassName('answer_btn')
 
+    buttons.item(0).disabled = true
+    buttons.item(1).disabled = true
+    buttons.item(2).disabled = true
+    buttons.item(3).disabled = true
+
     var user_input = null
-
-    function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        var intervalId = setInterval(function () {
-            minutes = parseInt(timer / 60, 10)
-            seconds = parseInt(timer % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
-                timer = 0
-                socket.emit('timer', true);
-            }
-        }, 1000);
-    }
-
-
-
-    socket.on('counter', function(data) {
-
-    // socket.emit('my event', {data: 'I\'m connected!'});
-    });
 
     socket.on('question', function(data) {
         console.log(data)
@@ -68,27 +48,17 @@
     });
     // 
     socket.on('connect', function(data) {
-        var display = document.getElementById('time');
-        startTimer(10, display)
+        buttons.item(0).disabled = false;
+        buttons.item(1).disabled = false;
+        buttons.item(2).disabled = false;
+        buttons.item(3).disabled = false;
         // socket.emit('my event', {data: 'I\'m connected!'});
     });
-
-    socket.on('redirect', function(destination) {
-        question.innerHTML = ''
-        buttons.item(0).disabled = true
-        buttons.item(1).disabled = true
-        buttons.item(2).disabled = true
-        buttons.item(3).disabled = true
-    });
 </script>
-
-
 
 {% endblock %}
 
 {% block content %}
-
-<div> <span id="time"> ---- </span> </div>
 
 <div id="question">
 
