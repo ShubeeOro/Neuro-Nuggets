@@ -1,0 +1,20 @@
+.icon{
+    height: 30vh;
+}
+
+.btn-container {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.btn-container .btn {
+    margin-bottom: 40px;
+} 
+.logo {
+    display:flex;
+    justify-content: center;
+}
+.logo h1 {
+    align-self: center;
+}

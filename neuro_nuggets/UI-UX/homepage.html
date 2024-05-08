@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="homepage.css" rel="stylesheet">
 </head>
 <body>
-    testing
+
+    <div class="container-fluid">
+        <!-- Icon in the top-left corner -->
+        <div class="row icon">
+            <div class="col">
+                <h1>user</h1>
+            </div>
+            <div class="col-7 text-center logo">
+                <h1>logo</h1>
+            </div>
+            <div class="col">            
+            </div>  
+        </div>
+    
+
+        <div class="row justify-content-center btn-container">
+            <div class="col-md-4 buttons">
+                <button type="button" class="btn btn-primary btn-block singlebtn">Single</button>
+                <button type="button" class="btn btn-primary btn-block endlessbtn">Endless</button>
+                <button type="button" class="btn btn-primary btn-block multiplayerbtn">Multiplayer</button>
+                <button type="button" class="btn btn-primary btn-block settingsbtn">Settings</button>
+            </div>
+        </div>
+    </div>
+        
+    <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
