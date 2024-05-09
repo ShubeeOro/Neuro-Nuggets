@@ -1,0 +1,32 @@
+/*header style*/
+header {
+    text-align: center; 
+    padding: 20px;
+ }
+ /*navigation menu style*/
+nav {
+    text-align: center;
+    word-spacing: 30px;
+    Padding: 10px;
+ }
+ .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.cg{
+ text-align: left;
+    word-spacing: 30px;
+    Padding: 10px;
+}
+.aj {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gh {
+    text-align: center;
+    font-size: 100px;
+}
