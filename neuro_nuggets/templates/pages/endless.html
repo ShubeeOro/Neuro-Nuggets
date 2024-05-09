@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 
-<head>
-<link rel="stylesheet" href="stylesht.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
+{% block head %}
+<link rel="stylesheet" href="../../static/endless.css">
+{% endblock %}
 
 {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
@@ -12,11 +10,18 @@
     // User Answer Via Buttons Logic
     var socket = io();
 
+    var question_txt = document.getElementById('question_txt');
     var question = document.getElementById('question');
     var form = document.getElementById('form');
-    var buttons = document.getElementsByClassName('answer_btn')
+    var buttons = document.getElementsByClassName('answer_btn');
     var scoreboard = document.getElementById('score');
 
+    var ans1 = document.getElementById("question_ans1");
+    var ans2 = document.getElementById("question_ans2");
+    var ans3 = document.getElementById("question_ans3");
+    var ans4 = document.getElementById("question_ans4");
+
+    var ans_list = [ans1, ans2, ans3, ans4]
 
     buttons.item(0).disabled = true
     buttons.item(1).disabled = true
@@ -27,15 +32,15 @@
 
     socket.on('score', function(score) {
         console.log(score)
-        scoreboard.innerText = score
+        scoreboard.innerText = `Score: ${score}`
     });
 
     socket.on('question', function(data) {
         console.log(data)
-        question.innerHTML = ''
-        var item = document.createElement('p');
-        item.textContent = data;
-        question.appendChild(item);
+        question_txt.textContent = data.question;
+        for (let i = 0; i < 4; i++) {
+            ans_list[i].innerText = data.answers[i]
+        };
         window.scrollTo(0, document.body.scrollHeight);
     });
 
