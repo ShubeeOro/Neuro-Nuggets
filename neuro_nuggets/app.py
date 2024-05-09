@@ -79,6 +79,7 @@ def test_connect_res(data):
         else:
             current_question = load_random_question()
             emit('question', str(current_question))
+            emit('score', score)
             print(f"Current Score is {score}")
 
 
