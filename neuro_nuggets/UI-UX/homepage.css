@@ -1,13 +1,15 @@
 body {
     background-image: url("/UI-UX/images/homepagebackground.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 
-.user-icon{
+.user-icon-container{
     height: 30vh;
 }
 
-.user-icon img {
+.user-icon {
     margin-top: 40px;
     margin-left: 30px;
     height: 200px;
@@ -19,7 +21,6 @@ body {
     justify-content: center;
 }
 
-
 .game-logo img {
     height: 576px;
     width: 1324px;
@@ -30,11 +31,44 @@ body {
     height: 50vh;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: top;
 }
 
-.buttons img {
+.buttons-div {
+    margin-top: 180px;
+}
+
+.buttons-div div{
+margin-bottom: 80px;
+}
+
+.buttons-div img {
     height: 132px;
     width: 516px;
-    margin-bottom: 50px;
+}
+
+.buttons-div > div {
+    position: relative;
+}
+.buttons-div > div::before { 
+    top: 0px;
+	left: -10%;
+    position: absolute;
+    z-index: 2;
+	content: '';
+	width: 100%;
+	height: 100%;
+ 	background: none;
+}
+
+.buttons-div > div:hover::before {
+    animation: shine 0.2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes shine {
+    100% {
+		left: -5%;
+        background: linear-gradient(to right, rgba(255,255,255,0) 90%, rgba(255,255,255,.3) 100%);
+	}
 }
