@@ -12,8 +12,8 @@ body {
 .user-icon {
     margin-top: 40px;
     margin-left: 30px;
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
 }
 
 .game-logo {
@@ -22,9 +22,9 @@ body {
 }
 
 .game-logo img {
-    height: 576px;
-    width: 1324px;
-    margin-top: 200px;
+    height: 288px;
+    width: 662px;
+    margin-top: 100px;
 }
 
 .btn-container {
@@ -35,16 +35,16 @@ body {
 }
 
 .buttons-div {
-    margin-top: 180px;
+    margin-top: 90px;
 }
 
 .buttons-div div{
-margin-bottom: 80px;
+margin-bottom: 40px;
 }
 
 .buttons-div img {
-    height: 132px;
-    width: 516px;
+    height: 66px;
+    width: 258px;
 }
 
 .buttons-div > div {
