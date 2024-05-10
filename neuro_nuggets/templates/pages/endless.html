@@ -30,9 +30,11 @@
 
     var user_input = null
 
+    var correct_index = null
+
     socket.on('score', function(score) {
         console.log(score)
-        scoreboard.innerText = `Score: ${score}`
+        scoreboard.innerText = `Score : ${score}`
     });
 
     socket.on('question', function(data) {
@@ -41,6 +43,7 @@
         for (let i = 0; i < 4; i++) {
             ans_list[i].innerText = data.answers[i]
         };
+        correct_index = (data.answer_id - 1)
         window.scrollTo(0, document.body.scrollHeight);
     });
 
@@ -60,9 +63,24 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       if (user_input) {
-        socket.emit('my event', user_input);
+        for (let i = 0; i < 4; i++) {
+            if (i == correct_index) {
+                buttons.item(i).color = "green"
+                ans_list[i].style.color = "green"
+            } else {
+                buttons.item(i).color = "red"
+                ans_list[i].style.color = "red"
+            }
+        };
+        setTimeout(() => {
+            socket.emit('my event', user_input);
+            for (let i = 0; i < 4; i++) {
+                buttons.item(i).color = ""
+                ans_list[i].style.color = "black"
+            };
+            user_input = null
+        }, 3000);
       }
-      user_input = null
     });
     // 
     socket.on('connect', function(data) {
@@ -79,15 +97,15 @@
 {% block content %}
 <div class="content">
 
-<p id="question_txt">how much balls on the sun</p>
-<div id="question" class="flex-container">
+<p id="question_txt">Loading...</p>
+<div id="question" style="align-items: center;" class="flex-container">
     <ol>
-        <li id="question_ans1" class="ans">Kentucky is the state of this plce and it has ajksdfldjgkmntlf,</li>
-        <li id="question_ans2" class="ans">Kentucky is the state of this plce and it has ajksdfldjgkmntlf,</li>
-        <li id="question_ans3" class="ans">Kentucky is the state of this plce and it has ajksdfldjgkmntlf,</li>
-        <li id="question_ans4" class="ans">Kentucky is the state of this plce and it has ajksdfldjgkmntlf,</li>
+        <li id="question_ans1" class="ans">Loading...</li>
+        <li id="question_ans2" class="ans">Loading...</li>
+        <li id="question_ans3" class="ans">Loading...</li>
+        <li id="question_ans4" class="ans">Loading...</li>
     </ol>
-    <h1 id="score">Score: 0</h1>
+    <h1 id="score">Score : 0</h1>
 </div>
 
 <form id="form">

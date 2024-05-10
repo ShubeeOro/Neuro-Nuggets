@@ -71,6 +71,7 @@ def test_connect_res(data):
     print("RES")
     global current_question
     global score
+    print(data)
     if game:
         if current_question.answer_id == int(data):
             current_question = load_random_question()
