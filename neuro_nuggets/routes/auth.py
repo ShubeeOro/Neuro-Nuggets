@@ -71,7 +71,7 @@ def signup_post():
     db.session.commit()
 
     flash('Successful Signup! Please Login')
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('main.profile'))
 
 @auth.route('/logout')
 @login_required

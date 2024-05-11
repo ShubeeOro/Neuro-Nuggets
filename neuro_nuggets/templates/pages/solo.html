@@ -9,6 +9,12 @@
     var question = document.getElementById('question');
     var form = document.getElementById('form');
     var buttons = document.getElementsByClassName('answer_btn')
+    var timer = document.getElementById('timer')
+
+    buttons.item(0).disabled = true
+    buttons.item(1).disabled = true
+    buttons.item(2).disabled = true
+    buttons.item(3).disabled = true
 
     var user_input = null
 
@@ -24,9 +30,14 @@
             display.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
-                timer = 0
-                socket.emit('timer', true);
+                clearInterval(intervalId)
+                socket.emit('timer');
             }
+
+            buttons.item(0).disabled = false
+            buttons.item(1).disabled = false
+            buttons.item(2).disabled = false
+            buttons.item(3).disabled = false
         }, 1000);
     }
 
@@ -68,27 +79,26 @@
     });
     // 
     socket.on('connect', function(data) {
-        var display = document.getElementById('time');
-        startTimer(10, display)
+        startTimer(60, timer)
         // socket.emit('my event', {data: 'I\'m connected!'});
     });
 
     socket.on('redirect', function(destination) {
-        question.innerHTML = ''
-        buttons.item(0).disabled = true
-        buttons.item(1).disabled = true
-        buttons.item(2).disabled = true
-        buttons.item(3).disabled = true
+        console.log(destination)
+        question.innerHTML = '';
+        timer.innerText = 'Out of Time';
+        buttons.item(0).disabled = true;
+        buttons.item(1).disabled = true;
+        buttons.item(2).disabled = true;
+        buttons.item(3).disabled = true;
     });
 </script>
-
-
 
 {% endblock %}
 
 {% block content %}
 
-<div> <span id="time"> ---- </span> </div>
+<div> <span id="timer"> ---- </span> </div>
 
 <div id="question">
 

@@ -16,7 +16,9 @@ from neuro_nuggets.routes.auth import auth
 from neuro_nuggets.routes.play import play
 from neuro_nuggets.routes.main import main
 
-app = Flask(__name__)
+from pathlib import Path
+
+app = Flask(__name__, static_folder=Path("./static/"))
 
 # Connects the db to the app
 app.config['SECRET_KEY'] = 'space-capybara'
@@ -57,29 +59,30 @@ def handle_connect():
     print("COM")
     global game
     game = True
-    emit('question', str(current_question))
+    emit('question', current_question.convert_question())
 
 
 @socketio.on('timer')
-def end_game(data):
+def end_game():
     emit('redirect', "localhost:8888")
         
-    
-
 @socketio.on('my event')
 def test_connect_res(data):
     print("RES")
     global current_question
     global score
+    print(data)
     if game:
         if current_question.answer_id == int(data):
             current_question = load_random_question()
-            emit('question', str(current_question))
+            emit('question', current_question.convert_question())
             score = score + 1
+            emit('score', score)
             print(f"Current Score is {score}")
         else:
             current_question = load_random_question()
-            emit('question', str(current_question))
+            emit('question', current_question.convert_question())
+            emit('score', score)
             print(f"Current Score is {score}")
 
 
