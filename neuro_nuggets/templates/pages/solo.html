@@ -11,6 +11,13 @@
     var buttons = document.getElementsByClassName('answer_btn')
     var timer = document.getElementById('timer')
 
+    var ans1 = document.getElementById("question_ans1");
+    var ans2 = document.getElementById("question_ans2");
+    var ans3 = document.getElementById("question_ans3");
+    var ans4 = document.getElementById("question_ans4");
+
+    var ans_list = [ans1, ans2, ans3, ans4]
+
     buttons.item(0).disabled = true
     buttons.item(1).disabled = true
     buttons.item(2).disabled = true
@@ -41,8 +48,6 @@
         }, 1000);
     }
 
-
-
     socket.on('counter', function(data) {
 
     // socket.emit('my event', {data: 'I\'m connected!'});
@@ -50,10 +55,11 @@
 
     socket.on('question', function(data) {
         console.log(data)
-        question.innerHTML = ''
-        var item = document.createElement('p');
-        item.textContent = data;
-        question.appendChild(item);
+        question_txt.textContent = data.question;
+        for (let i = 0; i < 4; i++) {
+            ans_list[i].innerText = data.answers[i]
+        };
+        correct_index = (data.answer_id - 1)
         window.scrollTo(0, document.body.scrollHeight);
     });
 
@@ -100,8 +106,15 @@
 
 <div> <span id="timer"> ---- </span> </div>
 
-<div id="question">
-
+<p id="question_txt">Loading...</p>
+<div id="question" style="align-items: center;" class="flex-container">
+    <ol>
+        <li id="question_ans1" class="ans">Loading...</li>
+        <li id="question_ans2" class="ans">Loading...</li>
+        <li id="question_ans3" class="ans">Loading...</li>
+        <li id="question_ans4" class="ans">Loading...</li>
+    </ol>
+    <h1 id="score">Score : 0</h1>
 </div>
 
 <form id="form">
