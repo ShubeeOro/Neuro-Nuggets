@@ -9,8 +9,40 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
 from neuro_nuggets.models import Question, User
 from neuro_nuggets.db import db
+import re
 
 auth = Blueprint('auth', __name__)
+
+def valid_password(password:str) -> bool:
+    flag = False
+    if not isinstance(password, str):
+        raise ValueError
+    while True:
+        if (len(password)<=8):
+            flag = True
+            break
+        elif not re.search("[a-z]", password):
+            flag = True
+            break
+        elif not re.search("[A-Z]", password):
+            flag = True
+            break
+        elif not re.search("[0-9]", password):
+            flag = True
+            break
+        elif not re.search("[_@$]" , password):
+            flag = True
+            break
+        elif re.search("\s" , password):
+            flag = True
+            break
+        else:
+            break
+    
+    if flag:
+        return False
+    else:
+        return True
 
 
 @auth.route('/login')

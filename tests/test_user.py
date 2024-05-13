@@ -32,7 +32,6 @@ def user_dummy():
             db.session.add(user)
             db.session.commit()
 
-
     return password, email, name
 
 def test_create_user(user_dummy):
