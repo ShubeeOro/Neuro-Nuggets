@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/endless.css">
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    // User Answer Via Buttons Logic
+    var socket = io();
+
+    var question_txt = document.getElementById('question_txt');
+    var question = document.getElementById('question');
+    var form = document.getElementById('form');
+    var buttons = document.getElementsByClassName('answer_btn');
+    var scoreboard = document.getElementById('score');
+
+    var ans1 = document.getElementById("question_ans1");
+    var ans2 = document.getElementById("question_ans2");
+    var ans3 = document.getElementById("question_ans3");
+    var ans4 = document.getElementById("question_ans4");
+
+    var ans_list = [ans1, ans2, ans3, ans4]
+
+    buttons.item(0).disabled = true
+    buttons.item(1).disabled = true
+    buttons.item(2).disabled = true
+    buttons.item(3).disabled = true
+
+    var user_input = null
+
+    var correct_index = null
+
+    socket.on('score', function(score) {
+        console.log(score)
+        scoreboard.innerText = `Score : ${score}`
+    });
+
+    socket.on('question', function(data) {
+        console.log(data)
+        question_txt.textContent = data.question;
+        for (let i = 0; i < 4; i++) {
+            ans_list[i].innerText = data.answers[i]
+        };
+        correct_index = (data.answer_id - 1)
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    buttons.item(0).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(1).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(2).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(3).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (user_input) {
+        for (let i = 0; i < 4; i++) {
+            if (i == correct_index) {
+                buttons.item(i).color = "green"
+                ans_list[i].style.color = "green"
+            } else {
+                buttons.item(i).color = "red"
+                ans_list[i].style.color = "red"
+            }
+        };
+        setTimeout(() => {
+            socket.emit('my event', user_input);
+            for (let i = 0; i < 4; i++) {
+                buttons.item(i).color = ""
+                ans_list[i].style.color = "black"
+            };
+            user_input = null
+        }, 3000);
+      }
+    });
+    // 
+    socket.on('connect', function(data) {
+        buttons.item(0).disabled = false;
+        buttons.item(1).disabled = false;
+        buttons.item(2).disabled = false;
+        buttons.item(3).disabled = false;
+        // socket.emit('my event', {data: 'I\'m connected!'});
+    });
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+<p id="question_txt">Loading...</p>
+<div id="question" style="align-items: center;" class="flex-container">
+    <ol>
+        <li id="question_ans1" class="ans">Loading...</li>
+        <li id="question_ans2" class="ans">Loading...</li>
+        <li id="question_ans3" class="ans">Loading...</li>
+        <li id="question_ans4" class="ans">Loading...</li>
+    </ol>
+    <h1 id="score">Score : 0</h1>
+</div>
+
+<form id="form">
+    <div class="buttons">
+        <button class="answer_btn" id="btn1" type="submit" value="1">1</button>
+        <button class="answer_btn" id="btn2" type="submit" value="2">2</button>
+        <button class="answer_btn" id="btn3" type="submit" value="3">3</button>
+        <button class="answer_btn" id="btn4" type="submit" value="4">4</button>
+    </div>
+</form>
+</div>
+{% endblock %}
