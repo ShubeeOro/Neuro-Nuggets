@@ -1,0 +1,8 @@
+{
+  "engines": {
+    "node": "v20.10.0"
+  },
+  "dependencies": {
+    "@vercel/postgres": "^0.8.0"
+  }
+}

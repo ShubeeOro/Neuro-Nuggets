@@ -1,0 +1,40 @@
+main {
+    background-image: url("../images/homepagebackground.png");
+    background-size: cover;
+}
+
+.user-icon{
+    height: 30vh;
+}
+
+.user-icon img {
+    margin-top: 40px;
+    margin-left: 30px;
+    height: 200px;
+    width: 200px;
+}
+
+.game-logo {
+    display: flex;
+    justify-content: center;
+}
+
+
+.game-logo img {
+    height: 576px;
+    width: 1324px;
+    margin-top: 200px;
+}
+
+.btn-container {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.buttons img {
+    height: 132px;
+    width: 516px;
+    margin-bottom: 50px;
+}

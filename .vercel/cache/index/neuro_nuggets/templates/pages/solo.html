@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    // User Answer Via Buttons Logic
+    var socket = io();
+
+    var question = document.getElementById('question');
+    var form = document.getElementById('form');
+    var buttons = document.getElementsByClassName('answer_btn')
+    var timer = document.getElementById('timer')
+
+    var ans1 = document.getElementById("question_ans1");
+    var ans2 = document.getElementById("question_ans2");
+    var ans3 = document.getElementById("question_ans3");
+    var ans4 = document.getElementById("question_ans4");
+
+    var ans_list = [ans1, ans2, ans3, ans4]
+
+    buttons.item(0).disabled = true
+    buttons.item(1).disabled = true
+    buttons.item(2).disabled = true
+    buttons.item(3).disabled = true
+
+    var user_input = null
+
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var intervalId = setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(intervalId)
+                socket.emit('timer');
+            }
+
+            buttons.item(0).disabled = false
+            buttons.item(1).disabled = false
+            buttons.item(2).disabled = false
+            buttons.item(3).disabled = false
+        }, 1000);
+    }
+
+    socket.on('counter', function(data) {
+
+    // socket.emit('my event', {data: 'I\'m connected!'});
+    });
+
+    socket.on('question', function(data) {
+        console.log(data)
+        question_txt.textContent = data.question;
+        for (let i = 0; i < 4; i++) {
+            ans_list[i].innerText = data.answers[i]
+        };
+        correct_index = (data.answer_id - 1)
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    buttons.item(0).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(1).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(2).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+    buttons.item(3).addEventListener('click', function(e) {
+        user_input = this.value
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (user_input) {
+        socket.emit('my event', user_input);
+      }
+      user_input = null
+    });
+    // 
+    socket.on('connect', function(data) {
+        startTimer(60, timer)
+        // socket.emit('my event', {data: 'I\'m connected!'});
+    });
+
+    socket.on('redirect', function(destination) {
+        console.log(destination)
+        question.innerHTML = '';
+        timer.innerText = 'Out of Time';
+        buttons.item(0).disabled = true;
+        buttons.item(1).disabled = true;
+        buttons.item(2).disabled = true;
+        buttons.item(3).disabled = true;
+    });
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+<div> <span id="timer"> ---- </span> </div>
+
+<p id="question_txt">Loading...</p>
+<div id="question" style="align-items: center;" class="flex-container">
+    <ol>
+        <li id="question_ans1" class="ans">Loading...</li>
+        <li id="question_ans2" class="ans">Loading...</li>
+        <li id="question_ans3" class="ans">Loading...</li>
+        <li id="question_ans4" class="ans">Loading...</li>
+    </ol>
+    <h1 id="score">Score : 0</h1>
+</div>
+
+<form id="form">
+    <button class="answer_btn" id="btn1" type="submit" value="1">1</button>
+    <button class="answer_btn" id="btn2" type="submit" value="2">2</button>
+    <button class="answer_btn" id="btn3" type="submit" value="3">3</button>
+    <button class="answer_btn" id="btn4" type="submit" value="4">4</button>
+</form>
+{% endblock %}
