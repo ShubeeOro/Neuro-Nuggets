@@ -1,11 +1,19 @@
 # Database Models
-from db import db
 from sqlalchemy import ForeignKey, Integer, String, TEXT
 from flask_login import UserMixin
 from sqlalchemy.orm import mapped_column, relationship
 from random import shuffle 
 from sqlalchemy.sql import func
 import json
+
+# Database
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
+
+class Base(DeclarativeBase):
+    pass
+
+db = SQLAlchemy(model_class=Base)
 
 class User(UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
