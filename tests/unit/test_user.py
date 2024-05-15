@@ -4,15 +4,21 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-import re
-from unittest.mock import patch
-
+from flask import Flask
+import os
+from dotenv import load_dotenv
+from api.models import db, User
 import pytest
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from neuro_nuggets.models import User
-from neuro_nuggets.db import db
-from neuro_nuggets.app import app
+load_dotenv()
+
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # os.environ.get('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') # os.environ.get('POSTGRES_URL')
+
+# Initialize Database
+db.init_app(app)
 
 @pytest.fixture
 def user_dummy():

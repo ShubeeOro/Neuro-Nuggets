@@ -1,8 +1,7 @@
 from flask import Flask, url_for, request, flash
 from flask_login import LoginManager, login_required, current_user, logout_user, login_user
 from flask_socketio import SocketIO, send, emit
-from db import db
-from models import User, Question
+from models import db, User, Question
 from sqlalchemy.sql import func
 from dotenv import load_dotenv
 import os
@@ -12,8 +11,6 @@ from helper import valid_password
 from werkzeug.security import generate_password_hash, check_password_hash
 
 load_dotenv()
-
-app = Flask(__name__)
 
 # Routes
 from routes.auth import auth
@@ -26,8 +23,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') # os.environ.g
     
 # Initialize Database
 db.init_app(app)
-
-
 
 # Blueprints
 app.register_blueprint(auth, url_prefix="/")
@@ -85,5 +80,3 @@ def test_connect_res(data):
             emit('question', current_question.convert_question())
             emit('score', 0)
 
-if __name__ == "__main__":
-    socketio.run(app, debug=True, port=8888)
