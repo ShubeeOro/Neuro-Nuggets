@@ -20,10 +20,10 @@
         <!-- Buttons -->    
         <div class="row btn-container">
             <div class="col-2 buttons-div">
-                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/singlebutton.png') }}" alt="singlemode" class="button" id="singlebutton"></div>
-                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/endlessbutton.png') }}" alt="endlessmode" class="button" id="endlessbutton"></div>
-                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/multiplayerbutton.png') }}" alt="mutiplayermode" id="multiplayerbutton"></div>
-                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/settingsbutton.png') }}" alt="settings" id="settingsbutton"></div>    
+                <div class="row justify-content-center"><a href="{{ url_for('play.endless_game') }}"><img src="{{ url_for('static', filename='img/singlebutton.png') }}" alt="singlemode" class="button" id="singlebutton"></a></div>
+                <div class="row justify-content-center"><a href="{{ url_for('play.solo_game') }}"></a><img src="{{ url_for('static', filename='img/endlessbutton.png') }}" alt="endlessmode" class="button" id="endlessbutton"></a></div>
+                <div class="row justify-content-center"><a href="{{ url_for('play.endless_game') }}"></a><img src="{{ url_for('static', filename='img/multiplayerbutton.png') }}" alt="mutiplayermode" id="multiplayerbutton"></a></div>
+                <div class="row justify-content-center"><a href="{{ url_for('play.endless_game') }}"></a><img src="{{ url_for('static', filename='img/settingsbutton.png') }}" alt="settings" id="settingsbutton"></a></div>    
             </div>
         </div>
     </div>
