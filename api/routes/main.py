@@ -7,7 +7,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('pages/game_mode.html')
+    return render_template('index.html')
 
 # Shows profile
 @main.route('/profile', methods=["GET","POST"])
