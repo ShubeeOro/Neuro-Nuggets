@@ -5,7 +5,7 @@ from sqlalchemy.sql import func
 from dotenv import load_dotenv
 import os
 
-from api.helper import valid_password
+from helper import valid_password
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -138,25 +138,35 @@ def load_random_question():
 
 current_question = load_random_question()
 
+current_question = load_random_question()
+score = 0
+
 @socketio.on('connect')
 def handle_connect():
+    print("COM")
+    global game
+    game = True
     emit('question', current_question.convert_question())
 
-#@socketio.on('timer')
-#def end_game():
-#    emit('redirect', "localhost:8888")
+
+@socketio.on('timer')
+def end_game():
+    emit('redirect', "localhost:8888")
         
 @socketio.on('my event')
 def test_connect_res(data):
+    print("RES")
+    global current_question
     print(data)
-    if current_question.answer_id == int(data):
-        current_question = load_random_question()
-        emit('question', current_question.convert_question())
-        emit('score', 1)
-    else:
-        current_question = load_random_question()
-        emit('question', current_question.convert_question())
-        emit('score', 0)
+    if game:
+        if current_question.answer_id == int(data):
+            current_question = load_random_question()
+            emit('question', current_question.convert_question())
+            emit('score', 1)
+        else:
+            current_question = load_random_question()
+            emit('question', current_question.convert_question())
+            emit('score', 0)
 
 @app.route('/')
 def home():
@@ -275,3 +285,6 @@ def test():
         q.init_answers()
 
     return render_template('index.html', questions=data)
+
+if __name__ == "__main__":
+    socketio.run(app, debug=True, port=8888)
