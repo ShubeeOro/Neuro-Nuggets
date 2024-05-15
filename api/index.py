@@ -137,38 +137,26 @@ def load_random_question():
     return result
 
 current_question = load_random_question()
-score = 1
 
 @socketio.on('connect')
 def handle_connect():
-    print("COM")
-    global game
-    game = True
     emit('question', current_question.convert_question())
 
-
-@socketio.on('timer')
-def end_game():
-    emit('redirect', "localhost:8888")
+#@socketio.on('timer')
+#def end_game():
+#    emit('redirect', "localhost:8888")
         
 @socketio.on('my event')
 def test_connect_res(data):
-    print("RES")
-    global current_question
-    global score
     print(data)
-    if game:
-        if current_question.answer_id == int(data):
-            current_question = load_random_question()
-            emit('question', current_question.convert_question())
-            score = score + 1
-            emit('score', score)
-            print(f"Current Score is {score}")
-        else:
-            current_question = load_random_question()
-            emit('question', current_question.convert_question())
-            emit('score', score)
-            print(f"Current Score is {score}")
+    if current_question.answer_id == int(data):
+        current_question = load_random_question()
+        emit('question', current_question.convert_question())
+        emit('score', 1)
+    else:
+        current_question = load_random_question()
+        emit('question', current_question.convert_question())
+        emit('score', 0)
 
 @app.route('/')
 def home():

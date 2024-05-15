@@ -29,12 +29,13 @@
     buttons.item(3).disabled = true
 
     var user_input = null
+    var current_user = 0
 
     var correct_index = null
 
     socket.on('score', function(score) {
-        console.log(score)
-        scoreboard.innerText = `Score : ${score}`
+        current_user = current_user + score
+        scoreboard.innerText = `Score : ${current_user}`
     });
 
     socket.on('question', function(data) {
@@ -73,13 +74,13 @@
             }
         };
         setTimeout(() => {
-            socket.emit('my event', user_input);
             for (let i = 0; i < 4; i++) {
                 buttons.item(i).color = ""
                 ans_list[i].style.color = "black"
             };
             user_input = null
         }, 3000);
+        socket.emit('my event', user_input);
       }
     });
     // 
