@@ -40,6 +40,10 @@
 
     socket.on('question', function(data) {
         console.log(data)
+        buttons.item(0).disabled = false
+        buttons.item(1).disabled = false
+        buttons.item(2).disabled = false
+        buttons.item(3).disabled = false
         question_txt.textContent = data.question;
         for (let i = 0; i < 4; i++) {
             ans_list[i].innerText = data.answers[i]
@@ -63,6 +67,10 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+        buttons.item(0).disabled = true
+        buttons.item(1).disabled = true
+        buttons.item(2).disabled = true
+        buttons.item(3).disabled = true
       if (user_input) {
         for (let i = 0; i < 4; i++) {
             if (i == correct_index) {
