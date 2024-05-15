@@ -29,8 +29,8 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # os.environ.get('SECRET_KEY')
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') # os.environ.get('POSTGRES_URL')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') | os.environ.get('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') | os.environ.get('POSTGRES_URL')
 
 # Database
 from flask_sqlalchemy import SQLAlchemy
