@@ -1,33 +1,42 @@
-import sys
-import os
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(SCRIPT_DIR))
-
-from flask import Flask, redirect, url_for
-from neuro_nuggets.models import User, Question
-from neuro_nuggets.db import db
-from pathlib import Path 
-from flask_login import LoginManager, login_required
+from flask import Flask, url_for, request, flash
+from flask_login import LoginManager, login_required, current_user, logout_user, login_user
 from flask_socketio import SocketIO, send, emit
+from db import db
+from models import User, Question
 from sqlalchemy.sql import func
+from dotenv import load_dotenv
+import os
+
+from helper import valid_password
+
+from werkzeug.security import generate_password_hash, check_password_hash
+
+load_dotenv()
+
+app = Flask(__name__)
 
 # Routes
-from neuro_nuggets.routes.auth import auth
-from neuro_nuggets.routes.play import play
-from neuro_nuggets.routes.main import main
+from routes.auth import auth
+from routes.play import play
+from routes.main import main
 
-from pathlib import Path
-
-app = Flask(__name__, static_folder=Path("./static/"))
-
-# Connects the db to the app
-app.config['SECRET_KEY'] = 'space-capybara'
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///storage.db"
-app.instance_path = Path("data/storage.db").resolve()
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # os.environ.get('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') # os.environ.get('POSTGRES_URL')
+    
+# Initialize Database
 db.init_app(app)
 
+
+
+# Blueprints
+app.register_blueprint(auth, url_prefix="/")
+app.register_blueprint(main, url_prefix="/")
+app.register_blueprint(play, url_prefix="/play")
+    
+# Login Manager
 login_manager = LoginManager()
-login_manager.login_view = 'auth.login'
+login_manager.login_view = 'login'
 login_manager.init_app(app)
 
 @login_manager.user_loader
@@ -38,11 +47,6 @@ def load_user(user_id):
 # Socket IO
 socketio = SocketIO(app)
 
-# Blueprints
-app.register_blueprint(auth, url_prefix="/")
-app.register_blueprint(main, url_prefix="/")
-app.register_blueprint(play, url_prefix="/play")
-
 def load_random_question():
     with app.app_context():
         stmt = db.select(Question).order_by(func.random()).limit(1)
@@ -52,7 +56,7 @@ def load_random_question():
     return result
 
 current_question = load_random_question()
-score = 1
+score = 0
 
 @socketio.on('connect')
 def handle_connect():
@@ -70,21 +74,16 @@ def end_game():
 def test_connect_res(data):
     print("RES")
     global current_question
-    global score
     print(data)
     if game:
         if current_question.answer_id == int(data):
             current_question = load_random_question()
             emit('question', current_question.convert_question())
-            score = score + 1
-            emit('score', score)
-            print(f"Current Score is {score}")
+            emit('score', 1)
         else:
             current_question = load_random_question()
             emit('question', current_question.convert_question())
-            emit('score', score)
-            print(f"Current Score is {score}")
-
+            emit('score', 0)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=8888)

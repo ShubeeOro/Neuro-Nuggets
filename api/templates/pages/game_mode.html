@@ -1,0 +1,31 @@
+{% block script %}
+<link href="{{ url_for('static', filename='css/homepage.css') }}" rel="stylesheet">
+{% endblock %}
+ 
+{% block content %}
+    <div class="container-fluid">
+        <!-- Icon in the top-left corner -->
+        <div class="row ">
+            <div class="col user-icon-container">
+                <img href="{{ url_for('static', filename='img/usericon.png') }}" alt="usericon" class="user-icon">
+            </div>
+        <!-- Game logo -->    
+            <div class="col game-logo">
+                <img src="{{ url_for('static', filename='img/gamelogo.png') }}" alt="gamelogo">
+            </div>
+            <div class="col">            
+            </div>  
+        </div>
+    
+        <!-- Buttons -->    
+        <div class="row btn-container">
+            <div class="col-2 buttons-div">
+                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/singlebutton.png') }}" alt="singlemode" class="button" id="singlebutton"></div>
+                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/endlessbutton.png') }}" alt="endlessmode" class="button" id="endlessbutton"></div>
+                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/multiplayerbutton.png') }}" alt="mutiplayermode" id="multiplayerbutton"></div>
+                <div class="row justify-content-center"><img src="{{ url_for('static', filename='img/settingsbutton.png') }}" alt="settings" id="settingsbutton"></div>    
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

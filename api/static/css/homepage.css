@@ -1,5 +1,5 @@
 body {
-    background-image: url("/UI-UX/images/homepagebackground.png");
+    background-image: url("../img/homepagebackground.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

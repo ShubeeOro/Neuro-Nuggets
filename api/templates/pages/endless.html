@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link rel="stylesheet" href="../../static/endless.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/endless.css') }}">
 {% endblock %}
 
 {% block script %}
@@ -29,12 +29,13 @@
     buttons.item(3).disabled = true
 
     var user_input = null
+    var current = 0
 
     var correct_index = null
 
     socket.on('score', function(score) {
-        console.log(score)
-        scoreboard.innerText = `Score : ${score}`
+        current = current + score
+        scoreboard.innerText = `Score : ${current}`
     });
 
     socket.on('question', function(data) {

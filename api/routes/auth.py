@@ -1,14 +1,8 @@
-import sys
-import os
-
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(SCRIPT_DIR))
-
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
-from neuro_nuggets.models import Question, User
-from neuro_nuggets.db import db
+from db import db
+from models import User
 import re
 
 auth = Blueprint('auth', __name__)

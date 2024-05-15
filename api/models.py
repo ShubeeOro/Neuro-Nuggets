@@ -1,14 +1,9 @@
-import sys
-import os
-
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(SCRIPT_DIR))
-
+# Database Models
+from db import db
 from sqlalchemy import ForeignKey, Integer, String, TEXT
 from flask_login import UserMixin
 from sqlalchemy.orm import mapped_column, relationship
 from random import shuffle 
-from neuro_nuggets.db import db
 from sqlalchemy.sql import func
 import json
 
