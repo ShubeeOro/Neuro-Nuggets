@@ -1,4 +1,5 @@
-from api.index import db, Question, User
+from db import db
+from models import User, Question
 from flask_login import login_required, current_user
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 
@@ -6,7 +7,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('pages/game_mode.html')
 
 # Shows profile
 @main.route('/profile', methods=["GET","POST"])

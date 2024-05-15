@@ -2,20 +2,17 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+        <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
         {% if current_user.is_authenticated %}
-        <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
-        <a class="nav-link" href="{{ url_for('start_game') }}">Start Game</a>
-        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+        <a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
+        <a class="nav-link" href="{{ url_for('play.start_game') }}">Start Game</a>
+        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
         {% endif %}
         {% if not current_user.is_authenticated %}
-        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-        <a class="nav-link" href="{{ url_for('signup') }}">Signup</a>
+        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+        <a class="nav-link" href="{{ url_for('auth.signup') }}">Signup</a>
         {% endif %}
       </div>
     </div>
   </div>
 </nav>
-
-
-FOR nav
