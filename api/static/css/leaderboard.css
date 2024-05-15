@@ -1,0 +1,86 @@
+/* brandon CSS file for leaderboard */
+
+body {
+    background-image: url("../img/homepagebackground.png");
+    background-color: rgb(230, 211, 10);
+}
+
+
+/* nav */
+nav {
+    ol li a {
+        text-decoration: none;
+        color: black;
+    }
+    ol li {
+        display: inline;
+        border: 3px solid black;
+        border-radius: 0%;
+        margin: 5px;
+        padding: 4px 19px;
+    }
+    ol {
+        padding: 25px;
+        justify-content: space-around;
+    }
+}
+
+
+/* header styling + layout */
+h1 {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    color:black;
+    padding: 0px 0px 10px 0px;
+}
+
+
+/* leaderboard layout, leaderboard div styling */
+form {
+    display: flex;
+    justify-content: center;
+        div {
+        display: flex;
+        justify-content: left;
+        display: table-column;
+        width: 500px;
+        border: 5px solid black;
+        border-radius: 0%;
+        margin: 10px;
+        background: linear-gradient(rgb(255, 16, 16), rgb(35, 133, 10));
+    }
+}
+
+/* top 3 styling */
+div {
+    .leaderboard li:nth-child(1) {
+        color: goldenrod;
+        text-shadow: 1px 1px gold;
+        font-size: larger;
+        font-weight: 600;
+        text-decoration:overline;
+        text-decoration-color: black;
+    }
+    .leaderboard li:nth-child(2) {
+        color: silver;
+        font-size: larger;
+    }
+    .leaderboard li:nth-child(3) {
+        color: #cd7f32; /* bronze */
+        font-size: large;
+    }
+}
+
+/* <top 3 styling */
+ol.leaderboard li {
+    color: white;
+    font-weight:500;
+}
+
+/* personal best text */
+div h3 {
+    display: flex;
+    color: rgb(20, 97, 10);
+    padding-left: 15px;
+}
