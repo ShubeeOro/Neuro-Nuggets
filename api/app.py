@@ -57,13 +57,10 @@ def load_random_question():
     return result
 
 current_question = load_random_question()
-score = 0
 
 @socketio.on('connect')
 def handle_connect():
-    print("COM")
-    global game
-    game = True
+    print("Connected")
     emit('question', current_question.convert_question())
 
 
@@ -73,18 +70,16 @@ def end_game():
         
 @socketio.on('my event')
 def test_connect_res(data):
-    print("RES")
-    global current_question
     print(data)
-    if game:
-        if current_question.answer_id == int(data):
-            current_question = load_random_question()
-            emit('question', current_question.convert_question())
-            emit('score', 1)
-        else:
-            current_question = load_random_question()
-            emit('question', current_question.convert_question())
-            emit('score', 0)
+    global current_question
+    if current_question.answer_id == int(data):
+        current_question = load_random_question()
+        emit('question', current_question.convert_question())
+        emit('score', 1)
+    else:
+        current_question = load_random_question()
+        emit('question', current_question.convert_question())
+        emit('score', 0)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=8000)

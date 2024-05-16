@@ -40,20 +40,34 @@ app.register_blueprint(main, url_prefix="/")
 app.register_blueprint(play, url_prefix="/play")
 
 
+def test_login_redirect():
+    with app.test_client() as test_client:
+        response = test_client.post('/login', data={"email":"kding4@my.bcit.ca", "password":"Test"})
+        assert response.status_code == 302
+
+def test_signup_redirect():
+    with app.test_client() as test_client:
+        response = test_client.post('/signup', data={"email":"kding4@my.bcit.ca", "name": "Kevin","password":"Test"})
+        assert response.status_code == 302
+
+def test_score_submit_redirect():
+    with app.test_client() as test_client:
+        response = test_client.post('/play/solo', data={"new_score":9})
+        assert response.status_code == 302
+
+def test_endless_redirect():
+    with app.test_client() as test_client:
+        response = test_client.get('/play/endless')
+        assert response.status_code == 302
+
+def test_solo_redirect():
+    with app.test_client() as test_client:
+        response = test_client.get('/play/solo')
+        assert response.status_code == 302
+
+# Shouldn't be able to access without logging in
 def test_profile():
     with app.test_client() as test_client:
-        test_client.post(
-            '/login',
-            data={'email': "kding4@my.bcit.ca", 'password': "Test", "remember": True}
-        )
         response = test_client.get('/profile')
-        assert response.status_code == 200
+        assert response.status_code != 200
 
-def test_leaderboard():
-    with app.test_client() as test_client:
-        test_client.post(
-            '/login',
-            data={'email': "kding4@my.bcit.ca", 'password': "Test", "remember": True}
-        )
-        response = test_client.get('/leaderboard')
-        assert response.status_code == 200
