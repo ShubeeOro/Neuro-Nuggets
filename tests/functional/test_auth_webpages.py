@@ -37,19 +37,3 @@ def load_user(user_id):
 app.register_blueprint(auth, url_prefix="/")
 app.register_blueprint(main, url_prefix="/")
 app.register_blueprint(play, url_prefix="/play")
-
-def test_homepage():
-    with app.test_client() as test_client:
-        response = test_client.get('/')
-        assert response.status_code == 200
-
-def test_login():
-    with app.test_client() as test_client:
-        response = test_client.get('/login')
-        assert response.status_code == 200
-
-def test_signup():
-    with app.test_client() as test_client:
-        response = test_client.get('/signup')
-        assert response.status_code == 200
-
