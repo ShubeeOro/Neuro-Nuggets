@@ -1,6 +1,6 @@
-from flask import Flask, url_for, request, flash
-from flask_login import LoginManager, login_required, current_user, logout_user, login_user
-from flask_socketio import SocketIO, send, emit
+from flask import Flask
+from flask_login import LoginManager
+from flask_socketio import SocketIO, emit
 from models import db, User, Question
 from sqlalchemy.sql import func
 from dotenv import load_dotenv

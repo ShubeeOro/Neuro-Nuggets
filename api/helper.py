@@ -1,6 +1,6 @@
 import re
 
-def valid_password(password:str) -> bool:
+def valid_password(password) -> bool:
     flag = False
     if not isinstance(password, str):
         raise ValueError
