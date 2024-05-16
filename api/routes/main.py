@@ -16,7 +16,6 @@ def index():
     return render_template('index.html')
 
 @main.route('/leaderboard')
-@login_required
 def leaderboard():
     users = db.session.query(User).order_by(desc(User.highscore))
     scores = []
@@ -25,8 +24,6 @@ def leaderboard():
         temp['name'] = i.name
         temp['highscore'] = i.highscore
         scores.append(temp)
-    
-    print(scores)
 
     return render_template('pages/leaderboard.html', user=current_user, scores=scores)
 

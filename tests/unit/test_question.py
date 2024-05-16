@@ -4,7 +4,8 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from flask import Flask, url_for, request, flash
+from flask import Flask
+from sqlalchemy.sql import func
 import os
 from dotenv import load_dotenv
 from api.models import db, Question
@@ -51,3 +52,16 @@ def test_question_convert(question):
     assert q['answers'] == ["correct", "wrong", "false", "incorrect"]
     assert q['correct_answer'] == "correct"
 
+def test_load_random_question():
+    with app.app_context():
+        stmt = db.select(Question).order_by(func.random()).limit(1)
+        result = db.session.execute(stmt).scalar()
+
+        with pytest.raises(AttributeError):
+            assert result.answer_id == None
+            assert result.answers == None
+
+        result.init_answers()
+        
+        assert isinstance(result.answer_id, int) == True
+        assert isinstance(result.answers, list) == True

@@ -25,7 +25,7 @@ db.init_app(app)
 
 # Login Manager
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
 
 @login_manager.user_loader
@@ -52,4 +52,7 @@ def test_signup():
     with app.test_client() as test_client:
         response = test_client.get('/signup')
         assert response.status_code == 200
+
+
+
 
