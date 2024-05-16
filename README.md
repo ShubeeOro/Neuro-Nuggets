@@ -1,28 +1,19 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# Neuro Nuggets
+Agile Project for ACIT 2911 Wintner 2023
 
-# Flask + Vercel
+### gunicorn for the server
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+Set 2C and 1C  
+Group 23 - Instructor Johnny 
 
-## Demo
+# Members
+### Name, Github Username, Student #
+- Brandon Penney ([Swipez1](https://github.com/Swipez1)) - [Add your student #]
+- Gautam Dhoopar ([Gautamd97](https://github.com/Gautamd97)) - [A01175403]
+- Kevin Ding ([ShubeeOro](https://github.com/ShubeeOro)) - [A01351590]
+- Hung Cuong Tran ([tailangtre](https://github.com/tailangtre)) - [Add your student #]
+- Hakeon Kim ([andrewkim0430](https://github.com/andrewkim0430)) - [Add your student #]
 
-https://flask-python-template.vercel.app/
 
-## How it Works
+# [Trello Board (Click Me!)](https://trello.com/b/3d5WGir6/neuro-nuggets)
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
-
-## Running Locally
-
-```bash
-npm i -g vercel
-vercel dev
-```
-
-Your Flask application is now available at `http://localhost:3000`.
-
-## One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
