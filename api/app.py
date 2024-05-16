@@ -1,7 +1,13 @@
+import sys
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
 from flask import Flask
 from flask_login import LoginManager
 from flask_socketio import SocketIO, emit
-from models import db, User, Question
+from api.models import db, User, Question
 from sqlalchemy.sql import func
 from dotenv import load_dotenv
 import os
@@ -31,7 +37,7 @@ app.register_blueprint(play, url_prefix="/play")
     
 # Login Manager
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
 
 @login_manager.user_loader
@@ -80,3 +86,5 @@ def test_connect_res(data):
             emit('question', current_question.convert_question())
             emit('score', 0)
 
+if __name__ == "__main__":
+    socketio.run(app, debug=True, port=8000)

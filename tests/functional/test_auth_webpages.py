@@ -9,6 +9,7 @@ from flask import Flask
 import os
 from dotenv import load_dotenv
 from api.models import db, User
+import pytest
 
 from api.routes.auth import auth
 from api.routes.play import play
@@ -25,7 +26,7 @@ db.init_app(app)
 
 # Login Manager
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
 
 @login_manager.user_loader
@@ -37,3 +38,22 @@ def load_user(user_id):
 app.register_blueprint(auth, url_prefix="/")
 app.register_blueprint(main, url_prefix="/")
 app.register_blueprint(play, url_prefix="/play")
+
+
+def test_profile():
+    with app.test_client() as test_client:
+        test_client.post(
+            '/login',
+            data={'email': "kding4@my.bcit.ca", 'password': "Test", "remember": True}
+        )
+        response = test_client.get('/profile')
+        assert response.status_code == 200
+
+def test_leaderboard():
+    with app.test_client() as test_client:
+        test_client.post(
+            '/login',
+            data={'email': "kding4@my.bcit.ca", 'password': "Test", "remember": True}
+        )
+        response = test_client.get('/leaderboard')
+        assert response.status_code == 200

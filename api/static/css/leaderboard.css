@@ -48,15 +48,15 @@ form {
         border: 5px solid black;
         border-radius: 0%;
         margin: 10px;
-        background: linear-gradient(rgb(255, 16, 16), rgb(35, 133, 10));
+        background: goldenrod;
+        /*linear-gradient(rgb(255, 16, 16), rgb(35, 133, 10)) */
     }
 }
 
 /* top 3 styling */
 div {
     .leaderboard li:nth-child(1) {
-        color: goldenrod;
-        text-shadow: 1px 1px gold;
+        color: gold;
         font-size: larger;
         font-weight: 600;
         text-decoration:overline;
@@ -78,9 +78,9 @@ ol.leaderboard li {
     font-weight:500;
 }
 
-/* personal best text */
+/* personal best text rgb(20, 97, 10)*/
 div h3 {
     display: flex;
-    color: rgb(20, 97, 10);
+    color: black;
     padding-left: 15px;
 }
