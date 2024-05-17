@@ -48,7 +48,7 @@ form {
         border: 5px solid black;
         border-radius: 0%;
         margin: 10px;
-        background: goldenrod;
+        background: linear-gradient(#0C2E2A, #1C642B, #6E8A1E);
         /*linear-gradient(rgb(255, 16, 16), rgb(35, 133, 10)) */
     }
 }
@@ -58,9 +58,7 @@ div {
     .leaderboard li:nth-child(1) {
         color: gold;
         font-size: larger;
-        font-weight: 600;
-        text-decoration:overline;
-        text-decoration-color: black;
+        font-weight: 700;
     }
     .leaderboard li:nth-child(2) {
         color: silver;
