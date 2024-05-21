@@ -1,0 +1,140 @@
+@font-face {
+    font-family: arcadefont;
+    src: url(/api/static/font/ARCADECLASSIC.TTF) ;
+}
+
+body {
+    background-image: url("/api/static/img/solobackground.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#arrow {
+    width: 60%;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+#scorestar {
+    width: 45%;
+    
+}
+
+#scorediv {
+    position: absolute;
+    width: 100%;
+    top: 0.5vw;
+    z-index: 99; 
+}
+
+#score {
+    font-family: arcadefont;
+    text-shadow: 5px 0px white;
+    font-size: 9vw;
+}
+
+#questionframediv {
+    width: 100vw;
+    justify-content: center;
+}
+
+#questionframe {
+    position: relative;
+    width: 90%;
+    height: 17vw;
+    margin-top: 3.6vw; 
+}
+
+#timericon {
+    z-index: 99;
+    position: absolute;
+    height: 8vw;
+    top: 6.5vw;
+    right: 5.7vw;
+}
+
+#timer {
+    z-index: 999;
+    position: absolute;
+    aspect-ratio: 62/65;
+    height: 8vw;
+    top: 6.8vw;
+    right: 5.8vw;
+    font-size: 2vw;
+    font-weight: bold;
+    line-height: 8vw;
+    text-align: center;
+    color: white;
+}
+
+
+#question_txt {
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    margin-top: 7vw;
+    font-family: arcadefont;
+    color: white;
+    font-size: 8vw;
+}
+
+#question {
+    margin-top: 2vw;
+    width: 100vw;
+}
+
+#question_ans1 {
+    background-image: url(/api/static/img/choice1.png);
+}
+
+#question_ans2 {
+    background-image: url(/api/static/img/choice2.png);
+}
+
+#question_ans3 {
+    background-image: url(/api/static/img/choice3.png);
+}
+
+#question_ans4 {
+    background-image: url(/api/static/img/choice4.png);
+}
+
+.ans {
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 7vw;
+    margin: 0.3vw;
+    line-height: 7vw;
+    font-family: arcadefont;
+    color: black;
+    font-size: 3vw;
+}
+
+#form {
+    margin-top: 1vw;
+    width: 100vw;
+}
+
+#btn1 {
+    background-image: url(/api/static/img/answerbutton1.png);
+}
+
+#btn2 {
+    background-image: url(/api/static/img/answerbutton2.png);
+}
+
+#btn3 {
+    background-image: url(/api/static/img/answerbutton3.png);
+}
+
+#btn4 {
+    background-image: url(/api/static/img/answerbutton4.png);
+}
+
+.answer_btn {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 5vw;
+}
