@@ -47,13 +47,14 @@
     function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
         var intervalId = setInterval(function () {
-            minutes = parseInt(timer / 60, 10)
+            minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
+            milliseconds = parseInt(timer % 1000, 10);
 
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            display.textContent = minutes + ":" + seconds;
+            display.textContent = `${minutes}:${seconds}`
 
             if (--timer < 0) {
                 clearInterval(intervalId)
@@ -72,7 +73,7 @@
             buttons.item(1).disabled = false
             buttons.item(2).disabled = false
             buttons.item(3).disabled = false
-        }, 1000);
+        }, 10);
     }
 
     socket.on('question', function(data) {
@@ -110,7 +111,7 @@
         };
     });
     socket.on('connect', function(data) {
-        startTimer(10, timer)
+        startTimer(3600, timer)
         // socket.emit('my event', {data: 'I\'m connected!'});
     });
 
@@ -151,7 +152,7 @@
 </form>
 </div>
 
-<form method="POST" style="display: none;" id="submit_form">
+<form method="POST" style="display: none; margin-top: 16px;" id="submit_form">
     <h1 id="score_txt" style="display: none; text-align: center; padding: 8px;">0</h1>
     <input type="number" class="form-control" id="new_score" name="new_score" style="display: none;">
     <div class="buttons">
