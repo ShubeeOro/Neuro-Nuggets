@@ -17,7 +17,7 @@ def valid_password(password) -> bool:
         elif not re.search("[0-9]", password):
             flag = True
             break
-        elif not re.search("[_@$]" , password):
+        elif not re.search("[!_#@$%^&*?<>~]" , password):
             flag = True
             break
         else:
