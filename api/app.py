@@ -62,11 +62,6 @@ current_question = load_random_question()
 def handle_connect():
     print("Connected")
     emit('question', current_question.convert_question())
-
-
-@socketio.on('timer')
-def end_game():
-    emit('redirect', "localhost:8888")
         
 @socketio.on('my event')
 def test_connect_res(data):
