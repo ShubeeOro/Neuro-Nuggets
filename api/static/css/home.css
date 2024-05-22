@@ -1,0 +1,12 @@
+body{
+    background-image: url("../img/homepagebackground.png");
+}
+
+div h1 {
+        text-align: center;
+        padding: 60px;
+}
+
+div h2 {
+    text-align: center;
+}

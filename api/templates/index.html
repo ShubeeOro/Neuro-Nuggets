@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block head %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
 {% block content %}
 <div>
     <h1>Welcome to Neuro Nuggets</h1>
-    
+    <h2>We are an online trivia game with two different modes</h2>
+    <h2>Solo Mode: A timed competitive mode with a leaderboard</h2>
+    <h2>Endless Mode: An endless mode where you can play as long as you want!</h2>
 </div>
+
 {% endblock %}
