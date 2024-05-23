@@ -35,11 +35,7 @@ class Question(db.Model):
     def init_answers(self) -> None:
         # Answer List
         answers = json.loads(str(self.incorrect_answers))
-<<<<<<< Updated upstream
-        answers.append(json.loads(str(self.correct_answer)))
-=======
         answers.append(self.correct_answer)
->>>>>>> Stashed changes
         shuffle(answers)
         self.answers = answers
         self.answer_id  = answers.index(self.correct_answer) + 1
