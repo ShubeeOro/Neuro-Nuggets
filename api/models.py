@@ -34,8 +34,7 @@ class Question(db.Model):
     # When you load a question row from the database, 
     def init_answers(self) -> None:
         # Answer List
-
-        answers = list(self.incorrect_answers)
+        answers = json.loads(str(self.incorrect_answers))
         answers.append(self.correct_answer)
         shuffle(answers)
         self.answers = answers
