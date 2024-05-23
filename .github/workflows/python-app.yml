@@ -28,6 +28,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Create Temporary .env
+      run: |
+        touch .env
+        echo "${{secrets.POSTGRES_URL }}" > .env
+        echo "${{secrets.SECRET_KEY }}" > .env
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
