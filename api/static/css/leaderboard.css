@@ -20,7 +20,7 @@ nav {
         padding: 4px 19px;
     }
     ol {
-        padding: 25px;
+        padding: 0px 25px;
         justify-content: space-around;
     }
 }
