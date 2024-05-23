@@ -2802,7 +2802,7 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Video Games",
-        "question": "In &quot;Fallout 4&quot; which faction is not present in the game?",
+        "question": "In Fallout 4, which faction is not present in the game?",
         "correct_answer": "The Enclave",
         "incorrect_answers": [
             "The Minutemen",
@@ -2814,7 +2814,7 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Video Games",
-        "question": "Who is Sonic&#039;s sidekick?",
+        "question": "Who is Sonic's sidekick?",
         "correct_answer": "Tails",
         "incorrect_answers": [
             "Shadow",
@@ -2886,7 +2886,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Which of these weapons is NOT available to the Terrorist team in the game, &quot;Counter-Strike: Global Offensive&quot;?",
+        "question": "Which of these weapons is NOT available to the Terrorist team in the game, Counter-Strike: Global Offensive?",
         "correct_answer": "SCAR-20",
         "incorrect_answers": [
             "SG 550",
@@ -2898,7 +2898,7 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Video Games",
-        "question": "In what year was the game &quot;FTL: Faster Than Light&quot; released?",
+        "question": "In what year was the game 'FTL: Faster Than Light' released?",
         "correct_answer": "2012",
         "incorrect_answers": [
             "2014",
@@ -2922,19 +2922,19 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Psych-Horror &quot;Eternal Darkness: Sanity&#039;s Requiem&quot;, developed by Silicon Knights in 2002, was published by who and on what platform?",
-        "correct_answer": "Nintendo&reg; Co. Ltd. | GameCube&trade;",
+        "question": "Psych-Horror 'Eternal Darkness: Sanity's Requiem', developed by Silicon Knights in 2002, was published by who and on what platform?",
+        "correct_answer": "Nintendo Co. Ltd. | GameCube",
         "incorrect_answers": [
-            "Sony&reg; Computer Entertainment&trade; Inc. | PlayStation&reg; 2",
-            "Microsoft&reg; Game Studios&trade; | XBox&trade;",
-            "Sega&reg; Enterprises Co. Ltd. | Dreamcast&trade;"
+            "Sony Computer Entertainment Inc. | PlayStation 2",
+            "Microsoft Game Studios | XBox",
+            "Sega Enterprises Co. Ltd. | Dreamcast"
         ]
     },
     {
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Video Games",
-        "question": "Which of the following is not a faction in Tom Clancy&#039;s The Division?",
+        "question": "Which of the following is not a faction in Tom Clancy's The Division?",
         "correct_answer": "CDC",
         "incorrect_answers": [
             "Cleaners",
@@ -2946,7 +2946,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Which weapon that was cut from the game &quot;Half Life 2&quot; was going to replace the crowbar?",
+        "question": "Which weapon that was cut from the game 'Half Life 2' was going to replace the crowbar?",
         "correct_answer": "Ice Axe",
         "incorrect_answers": [
             "Fire Axe",
@@ -2970,7 +2970,7 @@
         "type": "multiple",
         "difficulty": "hard",
         "category": "Entertainment: Video Games",
-        "question": "Which game in the &quot;Monster Hunter&quot; series introduced the monster &quot;Gobul&quot;?",
+        "question": "Which game in the 'Monster Hunter' series introduced the monster 'Gobul'?",
         "correct_answer": "Monster Hunter Tri",
         "incorrect_answers": [
             "Monster Hunter Freedom Unite",
@@ -2982,7 +2982,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Where does &quot;The Legend of Zelda: Majora&#039;s Mask&quot; take place?",
+        "question": "Where does 'The Legend of Zelda: Majora's Mask' take place?",
         "correct_answer": "Termina",
         "incorrect_answers": [
             "Hyrule",
@@ -2994,10 +2994,10 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "In the game series &quot;The Legend of Zelda&quot;, what was the first 3D game?",
+        "question": "In the game series 'The Legend of Zelda', what was the first 3D game?",
         "correct_answer": "Ocarina of Time",
         "incorrect_answers": [
-            "Majora&#039;s Mask",
+            "Majora's Mask",
             "A Link to the Past",
             "The Wind Waker"
         ]
@@ -3016,21 +3016,9 @@
     },
     {
         "type": "multiple",
-        "difficulty": "hard",
-        "category": "Entertainment: Video Games",
-        "question": "In &quot;Need for Speed III: Hot Pursuit&quot;, what is the name of the fictional car?",
-        "correct_answer": "El Ni&ntilde;o",
-        "incorrect_answers": [
-            "R&aacute;pido",
-            "&Aacute;gil",
-            "La Ni&ntilde;a"
-        ]
-    },
-    {
-        "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Which company developed the video game &quot;Borderlands&quot;?",
+        "question": "Which company developed the video game 'Borderlands'?",
         "correct_answer": "Gearbox Software",
         "incorrect_answers": [
             "2K Games",
@@ -3042,7 +3030,7 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Video Games",
-        "question": "What household item make the characters of &quot;Steins; Gate&quot; travel through time?",
+        "question": "What household item make the characters of 'Steins; Gate' travel through time?",
         "correct_answer": "Microwave",
         "incorrect_answers": [
             "Computer",
@@ -3054,7 +3042,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "In Fallout 4, which type of power armor is first encountered in the early mission &quot;When Freedom Calls&quot; in a crashed Vertibird?",
+        "question": "In Fallout 4, which type of power armor is first encountered in the early mission 'When Freedom Calls' in a crashed Vertibird?",
         "correct_answer": "T-45",
         "incorrect_answers": [
             "T-51",
@@ -3066,24 +3054,12 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "Entertainment: Video Games",
-        "question": "In the fighting game &quot;Skullgirls,&quot; which character utilizes a folding chair called the &quot;Hurting&quot; as a weapon?",
+        "question": "In the fighting game 'Skullgirls', which character utilizes a folding chair called the 'Hurting' as a weapon?",
         "correct_answer": "Beowulf",
         "incorrect_answers": [
             "Big Band",
             "Squigly",
             "Cerebella"
-        ]
-    },
-    {
-        "type": "multiple",
-        "difficulty": "easy",
-        "category": "Entertainment: Video Games",
-        "question": "Who is the leader of Team Mystic in Pok&eacute;mon Go?",
-        "correct_answer": "Blanche",
-        "incorrect_answers": [
-            "Candela",
-            "Spark",
-            "Willow"
         ]
     },
     {
@@ -3096,18 +3072,6 @@
             "Apple",
             "Google",
             "Yahoo"
-        ]
-    },
-    {
-        "type": "multiple",
-        "difficulty": "hard",
-        "category": "Entertainment: Video Games",
-        "question": "In &quot;Pok&eacute;mon Sun and Moon&quot;, Team Skull took over which town?",
-        "correct_answer": "Po Town",
-        "incorrect_answers": [
-            "Heahea City",
-            "Tapu Village",
-            "Iki Town"
         ]
     },
     {
@@ -3150,7 +3114,7 @@
         "type": "multiple",
         "difficulty": "hard",
         "category": "Entertainment: Video Games",
-        "question": "Which artist composed the original soundtrack for &quot;Watch Dogs 2&quot;?",
+        "question": "Which artist composed the original soundtrack for 'Watch Dogs 2'?",
         "correct_answer": "Hudson Mohawke",
         "incorrect_answers": [
             "Rustie",
@@ -3162,7 +3126,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Which of the following games in the Anno series introduced the &quot;Eco Balance&quot; gameplay mechanic?",
+        "question": "Which of the following games in the Anno series introduced the 'Eco Balance' gameplay mechanic?",
         "correct_answer": "Anno 2070",
         "incorrect_answers": [
             "Anno 1404",
@@ -3186,7 +3150,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Who was the mascot of SEGA before &quot;Sonic the Hedgehog&quot;?",
+        "question": "Who was the mascot of SEGA before 'Sonic the Hedgehog'?",
         "correct_answer": "Alex Kidd",
         "incorrect_answers": [
             "Opa Opa",
@@ -3222,7 +3186,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Which character is from &quot;Splatoon&quot;?",
+        "question": "Which character is from 'Splatoon'?",
         "correct_answer": "Marie",
         "incorrect_answers": [
             "Cyrus",
@@ -3246,7 +3210,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "In Sid Meier&#039;s Civilization V, which World Wonder can only be built in cities on or next to a desert?",
+        "question": "In Sid Meier's Civilization V, which World Wonder can only be built in cities on or next to a desert?",
         "correct_answer": "Petra",
         "incorrect_answers": [
             "The Pyramids",
@@ -3258,24 +3222,12 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "In the 2015 RPG &quot;Undertale&quot;, which character do you first encounter after falling down into the underground?",
+        "question": "In the 2015 RPG 'Undertale', which character do you first encounter after falling down into the underground?",
         "correct_answer": "Flowey",
         "incorrect_answers": [
             "Toriel",
             "Sans",
             "Papyrus"
-        ]
-    },
-    {
-        "type": "multiple",
-        "difficulty": "easy",
-        "category": "Entertainment: Video Games",
-        "question": "Who is the founder of Team Fortress 2&#039;s fictional company &quot;Mann Co&quot;?",
-        "correct_answer": "Zepheniah Mann",
-        "incorrect_answers": [
-            "Cave Johnson",
-            "Wallace Breem",
-            "Saxton Hale"
         ]
     },
     {
@@ -3294,7 +3246,7 @@
         "type": "multiple",
         "difficulty": "hard",
         "category": "Entertainment: Video Games",
-        "question": "In &quot;Team Fortress 2&quot;, how much health does a scout have when overhealed?",
+        "question": "In 'Team Fortress 2', how much health does a scout have when overhealed?",
         "correct_answer": "185",
         "incorrect_answers": [
             "215",
@@ -3318,10 +3270,10 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "Entertainment: Video Games",
-        "question": "Which one of these games wasn&#039;t released in 2016?",
+        "question": "Which one of these games wasn't released in 2016?",
         "correct_answer": "Metal Gear Solid V",
         "incorrect_answers": [
-            "Tom Clancy&#039;s The Division",
+            "Tom Clancy's The Division",
             "Killing Floor 2",
             "Hitman"
         ]
@@ -3335,7 +3287,7 @@
         "incorrect_answers": [
             "Zelda II: The Adventure of Link",
             "The Legend of Zelda: Four Swords Adventures",
-            "The Legend of Zelda: Majora&#039;s Mask"
+            "The Legend of Zelda: Majora's Mask"
         ]
     },
     {
@@ -3367,7 +3319,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "History",
-        "question": "What number does the Roman numeral &quot;D&quot; stand for?",
+        "question": "What number does the Roman numeral 'D&' stand for?",
         "correct_answer": "500",
         "incorrect_answers": [
             "100",
@@ -3421,18 +3373,6 @@
             "James Wellington",
             "Johnson Hinsin",
             "Boris Heviltik"
-        ]
-    },
-    {
-        "type": "multiple",
-        "difficulty": "hard",
-        "category": "History",
-        "question": "Pianist Fr&eacute;d&eacute;ric Chopin was a composer of which musical era?",
-        "correct_answer": "Romantic",
-        "incorrect_answers": [
-            "Classic",
-            "Baroque",
-            "Renaissance"
         ]
     },
     {
@@ -3547,7 +3487,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "History",
-        "question": "How many years did the Hundred Years&#039; War last?",
+        "question": "How many years did the Hundred Years War last?",
         "correct_answer": "116",
         "incorrect_answers": [
             "100",
@@ -3653,18 +3593,6 @@
     },
     {
         "type": "multiple",
-        "difficulty": "hard",
-        "category": "History",
-        "question": "The ontological argument for the proof of God&#039;s existence is first attributed to whom?",
-        "correct_answer": "Anselm of Canterbury",
-        "incorrect_answers": [
-            "Ren&eacute; Descartes",
-            "Immanuel Kant",
-            "Aristotle"
-        ]
-    },
-    {
-        "type": "multiple",
         "difficulty": "medium",
         "category": "History",
         "question": "Which U.S. president took part in the Potsdam Conference, where the Allies reached a peace settlement with Germany?",
@@ -3727,7 +3655,7 @@
         "type": "multiple",
         "difficulty": "easy",
         "category": "History",
-        "question": "Which famous world leader is famed for the saying, &quot;Let them eat cake&quot;, yet is rumored that he/she never said it at all?",
+        "question": "Which famous world leader is famed for the saying, 'Let them eat cake', yet is rumored that he/she never said it at all?",
         "correct_answer": "Marie Antoinette",
         "incorrect_answers": [
             "Czar Nicholas II",
@@ -3775,7 +3703,7 @@
         "type": "multiple",
         "difficulty": "hard",
         "category": "History",
-        "question": "During the Wars of the Roses (1455 - 1487) which Englishman was dubbed &quot;the Kingmaker&quot;?",
+        "question": "During the Wars of the Roses (1455 - 1487) which Englishman was dubbed 'the Kingmaker'?",
         "correct_answer": "Richard Neville",
         "incorrect_answers": [
             "Richard III",
@@ -3799,7 +3727,7 @@
         "type": "multiple",
         "difficulty": "medium",
         "category": "History",
-        "question": "When did L. L. Zamenhof first publish &quot;Unua Libro&quot;, the first publication describing his international language Esperanto?",
+        "question": "When did L. L. Zamenhof first publish 'Unua Libro', the first publication describing his international language Esperanto?",
         "correct_answer": "1887",
         "incorrect_answers": [
             "1897",
@@ -3907,7 +3835,7 @@
         "type": "multiple",
         "difficulty": "hard",
         "category": "History",
-        "question": "What did the first vending machines in the early 1880&#039;s dispense?",
+        "question": "What did the first vending machines in the early 1880's dispense?",
         "correct_answer": "Post cards",
         "incorrect_answers": [
             "Alcohol",
