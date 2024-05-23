@@ -29,10 +29,13 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Create Temporary .env
+      env: # Or as an environment variable
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
       run: |
         touch .env
-        echo "${{ secrets.POSTGRES_URL }}" > .env
-        echo "${{ secrets.SECRET_KEY }}" > .env
+        echo "$SECRET_KEY" >> .env
+        echo "$POSTGRES_URL" >> .env
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
