@@ -26,7 +26,7 @@ class Question(db.Model):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
     question = mapped_column(String(200), nullable=False, unique=True)
     correct_answer = mapped_column(String(200), nullable=False)
-    incorrect_answers = mapped_column(TEXT(400), nullable=False)
+    incorrect_answers = mapped_column(String(200), nullable=False)
     category = mapped_column(String(100), nullable=False)
     difficulty = mapped_column(String(100), nullable=False, default=0)
 
@@ -35,7 +35,7 @@ class Question(db.Model):
     def init_answers(self) -> None:
         # Answer List
         answers = json.loads(str(self.incorrect_answers))
-        answers.append(self.correct_answer)
+        answers.append(json.loads(str(self.correct_answer)))
         shuffle(answers)
         self.answers = answers
         self.answer_id  = answers.index(self.correct_answer) + 1

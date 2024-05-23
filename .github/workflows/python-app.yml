@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Create Temporary .env
+    - name: Create temporary .env
       env: # Or as an environment variable
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         POSTGRES_URL: ${{ secrets.POSTGRES_URL }}

@@ -28,12 +28,11 @@ def import_data():
             for row in data:
                 obj = Question(
                         question=row['question'],
-                        correct_answer=row['correct_answer'],
+                        correct_answer=json.dumps(row['correct_answer']),
                         incorrect_answers=json.dumps(row['incorrect_answers']),
                         category=row['category'],
                         difficulty=row['difficulty']
                     )
-                print(json.dumps(row['incorrect_answers']))
                 db.session.add(obj)
             db.session.commit()
 
