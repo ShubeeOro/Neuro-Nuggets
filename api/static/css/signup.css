@@ -42,9 +42,8 @@ h4 {
 }
 
 .notification {
-    background-color: red;
+    background-color: goldenrod;
     font-weight: bold;
-    color: white;
     padding: 8px;
     margin-bottom: 10px;
 }

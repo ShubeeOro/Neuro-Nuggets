@@ -10,6 +10,7 @@ from flask_socketio import SocketIO, emit
 from api.models import db, User, Question
 from sqlalchemy.sql import func
 from dotenv import load_dotenv
+from datetime import timedelta
 import os
 
 from helper import valid_password
@@ -38,6 +39,7 @@ app.register_blueprint(play, url_prefix="/play")
 # Login Manager
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
+app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
 login_manager.init_app(app)
 
 @login_manager.user_loader
