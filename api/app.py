@@ -24,9 +24,16 @@ from routes.auth import auth
 from routes.play import play
 from routes.main import main
 
+SQLALCHEMY_ENGINE_OPTIONS = {
+    'pool_size': 10,
+    'pool_recycle': 60,
+    'pool_pre_ping': True
+}
+
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # os.environ.get('SECRET_KEY')
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') # os.environ.get('POSTGRES_URL')
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = SQLALCHEMY_ENGINE_OPTIONS
     
 # Initialize Database
 db.init_app(app)
@@ -39,7 +46,7 @@ app.register_blueprint(play, url_prefix="/play")
 # Login Manager
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
-app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=5)
 login_manager.init_app(app)
 
 @login_manager.user_loader

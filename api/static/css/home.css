@@ -15,7 +15,7 @@ div h2 {
 }
 
 .flip-card {
-    background-color: transparent;
+    background-color: goldenrod;
     width: 400px;
     height: 275px;
     border: 1px solid #f1f1f1;
@@ -58,4 +58,14 @@ div h2 {
   }
   .flip-card-back h1{
     font-size: 30px;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .info-text {
+    padding: 16px;
   }
