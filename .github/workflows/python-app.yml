@@ -34,8 +34,8 @@ jobs:
         POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
       run: |
         touch .env
-        echo "$SECRET_KEY" >> .env
-        echo "$POSTGRES_URL" >> .env
+        echo "SECRET_KEY=$SECRET_KEY" >> .env
+        echo "POSTGRES_URL=$POSTGRES_URL" >> .env
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
