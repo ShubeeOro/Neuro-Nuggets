@@ -20,9 +20,12 @@ def valid_password(password) -> bool:
         elif not re.search("[!_#@$%^&*?<>~]" , password):
             flag = True
             break
+        elif re.search(r"\s" , password):
+            flag = True
+            break
         else:
             break
-    if flag:
-        return False
-    else:
+    if not flag:
         return True
+    else:
+        return False
