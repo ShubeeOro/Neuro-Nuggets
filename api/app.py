@@ -74,16 +74,14 @@ def handle_connect():
         
 @socketio.on('my event')
 def test_connect_res(data):
-    print(data)
     global current_question
     if current_question.answer_id == int(data):
+        emit('score', 1)
         current_question = load_random_question()
         emit('question', current_question.convert_question())
-        emit('score', 1)
     else:
         current_question = load_random_question()
         emit('question', current_question.convert_question())
-        emit('score', 0)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=8000)

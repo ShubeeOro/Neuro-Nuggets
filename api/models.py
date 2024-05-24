@@ -35,10 +35,10 @@ class Question(db.Model):
     def init_answers(self) -> None:
         # Answer List
         answers = json.loads(str(self.incorrect_answers))
-        answers.append(str(self.correct_answer))
+        answers.append(json.loads(str(self.correct_answer)))
         shuffle(answers)
         self.answers = answers
-        self.answer_id  = answers.index(self.correct_answer) + 1
+        self.answer_id  = answers.index(json.loads(str(self.correct_answer)))
 
     def convert_question(self) -> dict:
         if not self.answers:

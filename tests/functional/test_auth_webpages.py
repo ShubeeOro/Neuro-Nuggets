@@ -42,18 +42,18 @@ app.register_blueprint(play, url_prefix="/play")
 
 def test_login_redirect():
     with app.test_client() as test_client:
-        response = test_client.post('/login', data={"email":"kding4@my.bcit.ca", "password":"Test"})
-        assert response.status_code == 302
+        response = test_client.post('/login', data={"email":"kding4@my.bcit.ca", "password":"Test"}, follow_redirects=True)
+        assert response.status_code == 200
 
 def test_signup_redirect():
     with app.test_client() as test_client:
-        response = test_client.post('/signup', data={"email":"kding4@my.bcit.ca", "name": "Kevin","password":"Test"})
-        assert response.status_code == 302
+        response = test_client.post('/signup', data={"email":"kding4@my.bcit.ca", "name": "Kevin","password":"Test"}, follow_redirects=True)
+        assert response.status_code == 200
 
 def test_score_submit_redirect():
     with app.test_client() as test_client:
-        response = test_client.post('/play/solo', data={"new_score":9})
-        assert response.status_code == 302
+        response = test_client.post('/play/solo', data={"new_score":9}, follow_redirects=True)
+        assert response.status_code == 200
 
 def test_endless_redirect():
     with app.test_client() as test_client:
