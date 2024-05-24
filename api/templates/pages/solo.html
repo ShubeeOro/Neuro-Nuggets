@@ -106,7 +106,11 @@
         buttons.item(2).disabled = true
         buttons.item(3).disabled = true
       if (user_input) {
-        socket.emit('my event', user_input);
+        var game_data = {
+                "user": user_input,
+                "id": correct_index + 1
+            }
+            socket.emit('my event', game_data);
         user_input = null
         };
     });
