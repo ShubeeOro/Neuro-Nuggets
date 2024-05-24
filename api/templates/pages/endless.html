@@ -82,7 +82,11 @@
             }
         };
         setTimeout(() => {
-            socket.emit('my event', user_input);
+            var game_data = {
+                "user": user_input,
+                "id": correct_index + 1
+            }
+            socket.emit('my event', game_data);
             for (let i = 0; i < 4; i++) {
                 buttons.item(i).color = ""
                 ans_list[i].style.color = "black"
