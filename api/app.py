@@ -65,17 +65,18 @@ def load_random_question():
     result.init_answers()
     return result
 
-current_question = load_random_question()
+
 
 @socketio.on('connect')
 def handle_connect():
     print("Connected")
+    current_question = load_random_question()
     emit('question', current_question.convert_question())
         
 @socketio.on('my event')
 def test_connect_res(data):
-    global current_question
-    if current_question.answer_id == int(data):
+    print(data)
+    if int(data['id'] ) == int(data['user']):
         emit('score', 1)
         current_question = load_random_question()
         emit('question', current_question.convert_question())

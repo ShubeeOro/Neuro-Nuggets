@@ -38,7 +38,7 @@ class Question(db.Model):
         answers.append(json.loads(str(self.correct_answer)))
         shuffle(answers)
         self.answers = answers
-        self.answer_id  = answers.index(json.loads(str(self.correct_answer)))
+        self.answer_id  = answers.index(json.loads(str(self.correct_answer))) + 1
 
     def convert_question(self) -> dict:
         if not self.answers:
