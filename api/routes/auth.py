@@ -1,43 +1,16 @@
+import sys
+import os
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user
-from db import db
-from models import User
-import re
+from api.models import db, User
+from api.helper import valid_password
 
 auth = Blueprint('auth', __name__)
-
-def valid_password(password:str) -> bool:
-    flag = False
-    if not isinstance(password, str):
-        raise ValueError
-    while True:
-        if (len(password)<=8):
-            flag = True
-            break
-        elif not re.search("[a-z]", password):
-            flag = True
-            break
-        elif not re.search("[A-Z]", password):
-            flag = True
-            break
-        elif not re.search("[0-9]", password):
-            flag = True
-            break
-        elif not re.search("[_@$]" , password):
-            flag = True
-            break
-        elif re.search("\s" , password):
-            flag = True
-            break
-        else:
-            break
-    
-    if flag:
-        return False
-    else:
-        return True
-
 
 @auth.route('/login')
 def login():
@@ -45,10 +18,6 @@ def login():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-
-    email: str
-    password: str
-    remember: bool
 
     # login code goes here
     email = request.form.get('email')
@@ -74,14 +43,14 @@ def signup():
 @auth.route('/signup', methods=['POST'])
 def signup_post():
 
-    email: str
-    password: str
-    name: str
-
     # code to validate and add user to database goes here
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
+
+    if not valid_password(password):
+        flash('Weak Password')
+        return redirect(url_for('auth.signup'))
 
     user = db.session.query(User).filter_by(email=email).first()
 

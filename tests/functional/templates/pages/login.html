@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
     <div class="container-fluid">
         <form class="mx-auto" method="POST">
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-              <div class="notification is-danger">
-                  {{ messages[0] }}
-              </div>
-          {% endif %}
-          {% endwith %}
             <h4 class="text-center">Login</h4>
             <div class="mb-3">
               <label for="Email1" class="form-label">Email address</label>

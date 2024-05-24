@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 import pytest
 
-from neuro_nuggets.routes.auth import valid_password
+from api.helper import valid_password
 
 def test_valid_password():
     test = "Tcool231@s"

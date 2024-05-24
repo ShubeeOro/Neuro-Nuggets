@@ -1,6 +1,6 @@
 import re
 
-def valid_password(password:str) -> bool:
+def valid_password(password) -> bool:
     flag = False
     if not isinstance(password, str):
         raise ValueError
@@ -17,12 +17,15 @@ def valid_password(password:str) -> bool:
         elif not re.search("[0-9]", password):
             flag = True
             break
-        elif not re.search("[_@$]" , password):
+        elif not re.search("[!_#@$%^&*?<>~]" , password):
+            flag = True
+            break
+        elif re.search(r"\s" , password):
             flag = True
             break
         else:
             break
-    if flag:
-        return False
-    else:
+    if not flag:
         return True
+    else:
+        return False

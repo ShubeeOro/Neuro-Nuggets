@@ -1,20 +1,15 @@
 {% extends "base.html" %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/endless.css') }}">
-{% endblock %}
-
 {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf-8">
     // User Answer Via Buttons Logic
     var socket = io();
 
-    var question_txt = document.getElementById('question_txt');
     var question = document.getElementById('question');
     var form = document.getElementById('form');
-    var buttons = document.getElementsByClassName('answer_btn');
-    var scoreboard = document.getElementById('score');
+    var buttons = document.getElementsByClassName('answer_btn')
+    var timer = document.getElementById('timer')
 
     var ans1 = document.getElementById("question_ans1");
     var ans2 = document.getElementById("question_ans2");
@@ -29,21 +24,37 @@
     buttons.item(3).disabled = true
 
     var user_input = null
-    var current = 0
 
-    var correct_index = null
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var intervalId = setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
 
-    socket.on('score', function(score) {
-        current = current + score
-        scoreboard.innerText = `Score : ${current}`
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(intervalId)
+                socket.emit('timer');
+            }
+
+            buttons.item(0).disabled = false
+            buttons.item(1).disabled = false
+            buttons.item(2).disabled = false
+            buttons.item(3).disabled = false
+        }, 1000);
+    }
+
+    socket.on('counter', function(data) {
+
+    // socket.emit('my event', {data: 'I\'m connected!'});
     });
 
     socket.on('question', function(data) {
         console.log(data)
-        buttons.item(0).disabled = false
-        buttons.item(1).disabled = false
-        buttons.item(2).disabled = false
-        buttons.item(3).disabled = false
         question_txt.textContent = data.question;
         for (let i = 0; i < 4; i++) {
             ans_list[i].innerText = data.answers[i]
@@ -67,44 +78,33 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-        buttons.item(0).disabled = true
-        buttons.item(1).disabled = true
-        buttons.item(2).disabled = true
-        buttons.item(3).disabled = true
       if (user_input) {
-        for (let i = 0; i < 4; i++) {
-            if (i == correct_index) {
-                buttons.item(i).color = "green"
-                ans_list[i].style.color = "green"
-            } else {
-                buttons.item(i).color = "red"
-                ans_list[i].style.color = "red"
-            }
-        };
-        setTimeout(() => {
-            socket.emit('my event', user_input);
-            for (let i = 0; i < 4; i++) {
-                buttons.item(i).color = ""
-                ans_list[i].style.color = "black"
-            };
-            user_input = null
-        }, 2000);
+        socket.emit('my event', user_input);
       }
+      user_input = null
     });
     // 
     socket.on('connect', function(data) {
-        buttons.item(0).disabled = false;
-        buttons.item(1).disabled = false;
-        buttons.item(2).disabled = false;
-        buttons.item(3).disabled = false;
+        startTimer(60, timer)
         // socket.emit('my event', {data: 'I\'m connected!'});
+    });
+
+    socket.on('redirect', function(destination) {
+        console.log(destination)
+        question.innerHTML = '';
+        timer.innerText = 'Out of Time';
+        buttons.item(0).disabled = true;
+        buttons.item(1).disabled = true;
+        buttons.item(2).disabled = true;
+        buttons.item(3).disabled = true;
     });
 </script>
 
 {% endblock %}
 
 {% block content %}
-<div class="content">
+
+<div> <span id="timer"> ---- </span> </div>
 
 <p id="question_txt">Loading...</p>
 <div id="question" style="align-items: center;" class="flex-container">
@@ -118,12 +118,9 @@
 </div>
 
 <form id="form">
-    <div class="buttons">
-        <button class="answer_btn" id="btn1" type="submit" value="1">1</button>
-        <button class="answer_btn" id="btn2" type="submit" value="2">2</button>
-        <button class="answer_btn" id="btn3" type="submit" value="3">3</button>
-        <button class="answer_btn" id="btn4" type="submit" value="4">4</button>
-    </div>
+    <button class="answer_btn" id="btn1" type="submit" value="1">1</button>
+    <button class="answer_btn" id="btn2" type="submit" value="2">2</button>
+    <button class="answer_btn" id="btn3" type="submit" value="3">3</button>
+    <button class="answer_btn" id="btn4" type="submit" value="4">4</button>
 </form>
-</div>
 {% endblock %}

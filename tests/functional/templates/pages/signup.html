@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
     <div class="container-fluid">
         <form class="mx-auto" method="POST">
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-              <div class="notification">
-                  {{ messages[0] }}</a>.
-              </div>
-          {% endif %}
-          {% endwith %}
             <h4 class="text-center">Sign Up</h4>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>

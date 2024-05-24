@@ -40,10 +40,3 @@ h4 {
 .form-label{
     font-family: 700 !important;
 }
-
-.notification {
-    background-color: goldenrod;
-    font-weight: bold;
-    padding: 8px;
-    margin-bottom: 10px;
-}

@@ -1,0 +1,23 @@
+body {
+    background-image: url("../img/homepagebackground.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+h1.title {
+    display: flex;
+    justify-content: center;
+    padding: 0px 10px;
+}
+h1.highscore {
+    display: flex;
+    justify-content: center;
+    padding: 0px 10px;
+}
+label, form {
+    display: flex;
+    justify-content: center;
+    padding: 3px 10px;
+}

@@ -1,11 +1,19 @@
 # Database Models
-from db import db
 from sqlalchemy import ForeignKey, Integer, String, TEXT
 from flask_login import UserMixin
 from sqlalchemy.orm import mapped_column, relationship
 from random import shuffle 
 from sqlalchemy.sql import func
 import json
+
+# Database
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
+
+class Base(DeclarativeBase):
+    pass
+
+db = SQLAlchemy(model_class=Base)
 
 class User(UserMixin, db.Model):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
@@ -18,7 +26,7 @@ class Question(db.Model):
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
     question = mapped_column(String(200), nullable=False, unique=True)
     correct_answer = mapped_column(String(200), nullable=False)
-    incorrect_answers = mapped_column(TEXT(400), nullable=False)
+    incorrect_answers = mapped_column(String(200), nullable=False)
     category = mapped_column(String(100), nullable=False)
     difficulty = mapped_column(String(100), nullable=False, default=0)
 
@@ -26,11 +34,12 @@ class Question(db.Model):
     # When you load a question row from the database, 
     def init_answers(self) -> None:
         # Answer List
-        answers = json.loads(self.incorrect_answers)
-        answers.append(self.correct_answer)
+        answers = json.loads(str(self.incorrect_answers))
+        answers.append(json.loads(str(self.correct_answer)))
+        print(answers)
         shuffle(answers)
         self.answers = answers
-        self.answer_id  = answers.index(self.correct_answer) + 1
+        self.answer_id  = answers.index(json.loads(str(self.correct_answer))) + 1
 
     def convert_question(self) -> dict:
         if not self.answers:

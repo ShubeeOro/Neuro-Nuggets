@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/leaderboard.css') }}">
+{% endblock %}
+
+{% block content %}
+        <h1>Leaderboard Scores</h1>
+        <form id="form">
+            <div>
+                <ol class="leaderboard">
+                    {% for s in scores %}
+                    <li>{{ s['name'] }} : {{ s['highscore'] }}</li>
+                    {% endfor %}
+                </ol>
+                <h3>Personal Best: {{ user.highscore }}</h3>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,34 +1,40 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link href="../static/homepage.css" rel="stylesheet">
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-  <!-- Icon in the top-left corner -->
-  <div class="row ">
-      <div class="col-2 user-icon">
-          <img src="../images/usericon.png" alt="usericon">
-      </div>
-  <!-- Game logo -->    
-      <div class="col-8 game-logo">
-          <img src="../images/gamelogo.png" alt="gamelogo">
-      </div>
-      <div class="col-2">            
-      </div>  
-  </div>
-
-  <!-- Buttons -->    
-  <div class="row btn-container">
-      <div class="col-5 buttons">
-          <div class="row justify-content-center"><img src="../images/singlebutton.png" alt="singlemode" id="singlebutton"></div>
-          <div class="row justify-content-center"><img src="../images/endlessbutton.png" alt="endlessmode" id="endlessbutton"></div>
-          <div class="row justify-content-center"><img src="../images/multiplayerbutton.png" alt="mutiplayermode" id="multiplayerbutton"></div>
-          <div class="row justify-content-center"><img src="../images/settingsbutton.png" alt="settings" id="settingsbutton"></div>    
-      </div>
-  </div>
+<div class="info-text">
+    <h1>Welcome to Neuro Nuggets</h1>
+    <h2>We are an online trivia game with two different modes</h2>
+    <h2>Hover over cards for more details</h2>
 </div>
-  
+<div class="info">
+    <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <h1>SOLO MODE</h1>
+            <!-- <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;"> -->
+        </div>
+        <div class="flip-card-back">
+            <!-- <h1>SOLO MODE</h1> -->
+            <h1>A timed gamemode where your highscore can be submitted online!</h1>
+        </div>
+        </div>
+    </div>
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <h1>ENDLESS MODE</h1>
+            <!-- <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;"> -->
+        </div>
+        <div class="flip-card-back">
+            <!-- <h1>ENDLESS MODE</h1> -->
+            <h1>An endless mode where you can play as long as you want!</h1>
+        </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

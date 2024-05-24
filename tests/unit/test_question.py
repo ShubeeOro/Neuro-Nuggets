@@ -4,15 +4,22 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-import re
-from unittest.mock import patch
-
+from flask import Flask
+from sqlalchemy.sql import func
+import os
+from dotenv import load_dotenv
+from api.models import db, Question
 import pytest
 
-from neuro_nuggets.models import Question
+load_dotenv()
 
-# This becomes a variable based on function name (question)
-# You can pass this through other test func to have a preset variable
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') # os.environ.get('SECRET_KEY')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('POSTGRES_URL') # os.environ.get('POSTGRES_URL')
+
+# Initialize Database
+db.init_app(app)
+
 @pytest.fixture
 def question():
     """Fixture with set question and answers"""
@@ -45,3 +52,16 @@ def test_question_convert(question):
     assert q['answers'] == ["correct", "wrong", "false", "incorrect"]
     assert q['correct_answer'] == "correct"
 
+def test_load_random_question():
+    with app.app_context():
+        stmt = db.select(Question).order_by(func.random()).limit(1)
+        result = db.session.execute(stmt).scalar()
+
+        with pytest.raises(AttributeError):
+            assert result.answer_id == None
+            assert result.answers == None
+
+        result.init_answers()
+        
+        assert isinstance(result.answer_id, int) == True
+        assert isinstance(result.answers, list) == True
