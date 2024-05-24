@@ -36,7 +36,6 @@ class Question(db.Model):
         # Answer List
         answers = json.loads(str(self.incorrect_answers))
         answers.append(json.loads(str(self.correct_answer)))
-        print(answers)
         shuffle(answers)
         self.answers = answers
         self.answer_id  = answers.index(json.loads(str(self.correct_answer))) + 1
