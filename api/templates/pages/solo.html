@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+<!-- {% extends "base.html" %}
 
 {% block script %} -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
@@ -21,11 +21,6 @@
 
     var ans_list = [ans1, ans2, ans3, ans4]
 
-    var score_txt = document.getElementById("score_txt")
-    var new_score = document.getElementById("new_score")
-    var submit_score = document.getElementById("submit_score")
-    var submit_form = document.getElementById("submit_form")
-
     buttons.item(0).disabled = true
     buttons.item(1).disabled = true
     buttons.item(2).disabled = true
@@ -33,46 +28,33 @@
 
     var user_input = null
 
-    var current = 0
-
-    var correct_index = null
-
-    socket.on('score', function(score) {
-        current = current + score
-        scoreboard.innerText = `Score : ${current}`
-    });
-
     function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
         var intervalId = setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
+            minutes = parseInt(timer / 60, 10)
             seconds = parseInt(timer % 60, 10);
-            milliseconds = parseInt(timer % 1000, 10);
 
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            display.textContent = `${minutes}:${seconds}`
+            display.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
                 clearInterval(intervalId)
                 socket.emit('timer');
-                buttons.item(0).disabled = true
-                buttons.item(1).disabled = true
-                buttons.item(2).disabled = true
-                buttons.item(3).disabled = true
-                new_score.value = current
-                score_txt.innerText = `Your score is ${current}`
-                score_txt.style.display = "block"
-                submit_form.style.display = "block"
             }
 
             buttons.item(0).disabled = false
             buttons.item(1).disabled = false
             buttons.item(2).disabled = false
             buttons.item(3).disabled = false
-        }, 10);
+        }, 1000);
     }
+
+    socket.on('counter', function(data) {
+
+    // socket.emit('my event', {data: 'I\'m connected!'});
+    });
 
     socket.on('question', function(data) {
         console.log(data)
@@ -99,17 +81,14 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-        buttons.item(0).disabled = true
-        buttons.item(1).disabled = true
-        buttons.item(2).disabled = true
-        buttons.item(3).disabled = true
       if (user_input) {
         socket.emit('my event', user_input);
-        user_input = null
-        };
+      }
+      user_input = null
     });
+    // 
     socket.on('connect', function(data) {
-        startTimer(3600, timer)
+        startTimer(60, timer)
         // socket.emit('my event', {data: 'I\'m connected!'});
     });
 
@@ -126,25 +105,61 @@
 
 <!-- % endblock %}
 
-{% block content %}
-
-<div> <span id="timer"> ---- </span> </div>
-
-<p id="question_txt">Loading...</p>
-<div id="question" style="align-items: center;" class="flex-container">
-    <ol>
-        <li id="question_ans1" class="ans">Loading...</li>
-        <li id="question_ans2" class="ans">Loading...</li>
-        <li id="question_ans3" class="ans">Loading...</li>
-        <li id="question_ans4" class="ans">Loading...</li>
-    </ol>
-    <h1 id="score">Score : 0</h1>
+{% block content %} -->
+<!-- arrow --> 
+<div class="row" style="width: 100%;">
+    <div class="col-2 align-self-start"><img id="arrow" src="/api/static/img/arrow.png" alt="arrow"></div>
 </div>
 
-<form id="form">
-    <button class="answer_btn" id="btn1" type="submit" value="1">1</button>
-    <button class="answer_btn" id="btn2" type="submit" value="2">2</button>
-    <button class="answer_btn" id="btn3" type="submit" value="3">3</button>
-    <button class="answer_btn" id="btn4" type="submit" value="4">4</button>
+<!-- score -->
+<div id="scorediv" class="row justify-content-center">
+    <div class="col-4">
+        <div class="row">
+            <img class="col" id="scorestar" src="/api/static/img/scorestar.png" alt="scorestar">
+            <div id="score" class="col align-self-center">666</div>
+        </div>
+    </div>    
+</div>
+<!-- question -->
+<div class="row">
+    <div></div>
+</div>
+
+
+
+<!-- question frame -->
+<div id="questionframediv" class="row"> 
+    <img id="questionframe" src="/api/static/img/questionframe.png" alt="qsframe">
+    <div id="question_txt">Are you gay?</div> 
+    
+</div>
+
+<!-- Timer -->
+<img id="timericon" src="/api/static/img/timer.png" alt="timericon">
+
+<div id="timer">
+    <p>666</p>      
+</div>
+
+<!--Choices-->
+<div id="question" class="row">
+    <div class="row justify-content-center">
+        <div id="question_ans1" class="ans col-5 align-self-end">Yes</div>
+        <div id="question_ans2" class="ans col-5 align-self-start">Ofcourse</div>
+    </div>
+    <div class="row justify-content-center">     
+        <div id="question_ans3" class="ans col-5 align-self-end">Yeah</div>
+        <div id="question_ans4" class="ans col-5 align-self-start">100%</div>
+    </div>
+   
+</div>
+
+<!--buttons-->
+<form id="form" class="row justify-content-center">
+    <div class="answer_btn col-1" id="btn1" type="submit" value="1"></div>
+    <div class="answer_btn col-1" id="btn2" type="submit" value="2"></div>
+    <div class="answer_btn col-1" id="btn3" type="submit" value="3"></div>
+    <div class="answer_btn col-1" id="btn4" type="submit" value="4"></div>
 </form>
 <!-- {% endblock %} -->
+
