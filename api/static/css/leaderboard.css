@@ -19,10 +19,10 @@ nav {
         border: 3px solid black;
         border-radius: 0%;
         margin: 5px;
-        padding: 4px 19px;
+        /* padding: 4px 19px; */
     }
     ol {
-        padding: 0px 25px;
+        /* padding: 0px 25px; */
         justify-content: space-around;
     }
 }
@@ -34,7 +34,7 @@ h1 {
     justify-content: center;
     font-weight: 600;
     color:black;
-    padding: 0px 0px 10px 0px;
+    padding: 0px;
 }
 
 
