@@ -85,4 +85,4 @@ def test_connect_res(data):
         emit('question', current_question.convert_question())
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True, port=8000)
+    socketio.run(app)
